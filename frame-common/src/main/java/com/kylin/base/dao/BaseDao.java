@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description:
+ * @Description:  基础DAO
  * @Auther: kylin
  * @Email: tongzhq94@163.com
  * @Date: 2018/04/29 14:52

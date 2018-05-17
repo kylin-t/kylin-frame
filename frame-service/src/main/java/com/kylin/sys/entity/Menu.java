@@ -3,34 +3,46 @@ package com.kylin.sys.entity;
 import java.util.List;
 
 /**
- * @Description:
+ * @Description:  菜单管理
  * @Auther: kylin
  * @Email: tongzhq94@163.com
  * @Date: 2018/04/29 15:43
  */
 public class Menu {
-    //主键id
-    private String menuId;
-    //父菜单id
-    private String parentId;
-    //所有父id
-    private String parentIds;
-    //菜单名称
+    /**
+     * 主键id
+     */
+    private Long menuId;
+    /**
+     * 父菜单id
+     */
+    private Long parentId;
+    /**
+     * 菜单名称
+     */
     private String menuName;
-    //菜单链接
+    /**
+     * 菜单链接
+     */
     private String url;
-    //菜单图标
+    /**
+     * 菜单图标
+     */
     private String icon;
-    //排序
+    /**
+     * 排序
+     */
     private Integer orderNum;
     //状态（0显示，-1隐藏)
     private String status;
-    //权限标识
+    /**
+     * 权限标识
+     */
     private String permission;
-    //备注
-    private String remark;
-    //菜单类型
-    private String type;
+    /**
+     * 菜单类型
+     */
+    private Integer menuType;
     //父菜单名字
     private String parentName;
     //子类菜单
@@ -38,28 +50,20 @@ public class Menu {
     //是否展开 true是 false否
     private String open;
 
-    public String getMenuId() {
+    public Long getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(String menuId) {
+    public void setMenuId(Long menuId) {
         this.menuId = menuId;
     }
 
-    public String getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
-    }
-
-    public String getParentIds() {
-        return parentIds;
-    }
-
-    public void setParentIds(String parentIds) {
-        this.parentIds = parentIds;
     }
 
     public String getMenuName() {
@@ -110,20 +114,12 @@ public class Menu {
         this.permission = permission;
     }
 
-    public String getRemark() {
-        return remark;
+    public Integer getMenuType() {
+        return menuType;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setMenuType(Integer menuType) {
+        this.menuType = menuType;
     }
 
     public String getParentName() {
