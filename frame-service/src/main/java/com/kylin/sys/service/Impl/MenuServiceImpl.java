@@ -27,9 +27,9 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<Menu> queryListByParentId(Long parentId, List<Long> menuId) {
+    public List<Menu> queryListByParentId(Long parentId, List<Long> menuIdList) {
         List<Menu> menuList = queryListByParentId(parentId);
-        if (menuList == null){
+        if (menuIdList == null){
             return menuList;
         }
         List<Menu> userMenuList = new ArrayList<>();
@@ -72,8 +72,8 @@ public class MenuServiceImpl implements MenuService {
        List<Menu> childMenuList = new ArrayList<>();
 
        for (Menu menu : menuList){
-           if (menu.getMenuType() == 1){
-               menu.setList(getChildMenuList(queryListByParentId(menu.getMenuId(),menuIdList),menuIdList));
+           if (menu.getMenuType() == 0){
+               menu.setChildList(getChildMenuList(queryListByParentId(menu.getMenuId(),menuIdList),menuIdList));
            }
            childMenuList.add(menu);
        }

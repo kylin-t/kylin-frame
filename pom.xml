@@ -11,7 +11,8 @@
     <modules>
         <module>frame-admin</module>
         <module>frame-common</module>
-        <module>frame-service</module><!--web管理模块 -->
+        <module>frame-service</module>
+        <module>frame-shiro</module><!--web管理模块 -->
     </modules>
 
     <properties>

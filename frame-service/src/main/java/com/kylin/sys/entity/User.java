@@ -2,8 +2,8 @@ package com.kylin.sys.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kylin.base.validator.group.AddGroup;
-import com.kylin.base.validator.group.UpdateGroup;
+import com.kylin.validator.group.AddGroup;
+import com.kylin.validator.group.UpdateGroup;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 

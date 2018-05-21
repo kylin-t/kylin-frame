@@ -1,4 +1,4 @@
-package com.kylin.base.validator.group;
+package com.kylin.validator.group;
 
 import javax.validation.GroupSequence;
 

@@ -1,6 +1,9 @@
 package com.kylin.sys.controller;
 
+import com.kylin.Result.Result;
 import com.kylin.sys.entity.Menu;
+import com.kylin.sys.service.MenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,5 +17,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/sys/menu")
 public class MenuController extends BaseController {
-//    public List<Menu>
+
+    @Autowired
+    private MenuService menuService;
+
+    /**
+     * 导航菜单
+     * @return
+     */
+    @RequestMapping("/nav")
+    public Result nav(){
+        List<Menu> menuList = menuService.getUserMenuList(1L);
+        return Result.success(menuList);
+    }
 }

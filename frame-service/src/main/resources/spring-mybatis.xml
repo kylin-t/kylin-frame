@@ -16,7 +16,7 @@
     <context:component-scan base-package="com.kylin.*.service,com.kylin.*.dao" />
 
     <!--加载SpringContextUtils到容器-->
-    <bean name="springContextUtils" class="com.kylin.base.utils.SpringContextUtils"/>
+    <bean name="springContextUtils" class="com.kylin.utils.SpringContextUtils"/>
 
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"

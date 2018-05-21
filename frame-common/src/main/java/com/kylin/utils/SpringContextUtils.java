@@ -1,4 +1,4 @@
-package com.kylin.base.utils;
+package com.kylin.utils;
 
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.BeansException;

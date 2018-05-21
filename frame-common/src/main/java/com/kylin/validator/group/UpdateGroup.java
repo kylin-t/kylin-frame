@@ -1,4 +1,4 @@
-package com.kylin.base.validator.group;
+package com.kylin.validator.group;
 
 /**
  * @Description:  更新数据时候的校验

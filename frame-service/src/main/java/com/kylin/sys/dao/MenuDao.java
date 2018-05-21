@@ -1,6 +1,5 @@
 package com.kylin.sys.dao;
 
-import com.kylin.base.dao.BaseDao;
 import com.kylin.sys.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 

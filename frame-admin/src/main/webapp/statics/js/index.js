@@ -44,12 +44,13 @@ var vm = new Vue({
     },
     methods: {
         getMenuList: function () {
-            console.log('iii00');
             $.getJSON("sys/menu/nav", function (r) {
-                vm.menuList = r.menuList;
+                vm.menuList = r.data;
+                console.log(r);
             });
         },
         getUser: function () {
+            console.log(vm.menuList);
             $.getJSON("sys/user/info?_" + $.now(), function (r) {
                 vm.user = r.user;
             });

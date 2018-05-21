@@ -43,12 +43,18 @@ public class Menu {
      * 菜单类型
      */
     private Integer menuType;
-    //父菜单名字
+    /**
+     * 父菜单名字
+     */
     private String parentName;
-    //子类菜单
-    private List list;
-    //是否展开 true是 false否
-    private String open;
+    /**
+     * 子菜单列表
+     */
+    private List childList;
+    /**
+     * 是否展开 true是 false否
+     */
+    private Boolean open;
 
     public Long getMenuId() {
         return menuId;
@@ -130,19 +136,19 @@ public class Menu {
         this.parentName = parentName;
     }
 
-    public List getList() {
-        return list;
+    public List getChildList() {
+        return childList;
     }
 
-    public void setList(List list) {
-        this.list = list;
+    public void setChildList(List childList) {
+        this.childList = childList;
     }
 
-    public String getOpen() {
+    public Boolean getOpen() {
         return open;
     }
 
-    public void setOpen(String open) {
+    public void setOpen(Boolean open) {
         this.open = open;
     }
 }

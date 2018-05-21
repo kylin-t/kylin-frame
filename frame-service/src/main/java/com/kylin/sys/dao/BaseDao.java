@@ -1,4 +1,4 @@
-package com.kylin.base.dao;
+package com.kylin.sys.dao;
 
 import java.util.List;
 import java.util.Map;
