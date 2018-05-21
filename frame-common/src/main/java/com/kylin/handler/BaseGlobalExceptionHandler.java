@@ -1,22 +1,35 @@
-package com.kylin.exception;
+package com.kylin.handler;
 
 import com.kylin.Result.DefaultErrorResult;
+import com.kylin.enums.ResultCode;
+import com.kylin.exception.BusinessException;
+import com.kylin.helper.ParameterInvalidItemHelper;
+import com.kylin.modal.bo.ParameterInvalidItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
+import java.util.List;
 
 /**
  * @Author kylin
  * Description  全局异常处理基础类
- * @Date Created in 2018/05/17 17:58
+ * @Date Created in 2018/05/21 11:22
  */
 public class BaseGlobalExceptionHandler {
-
+    Logger log = LoggerFactory.getLogger(getClass());
     /**
      * 违反约束异常
      */
-    protected DefaultErrorResultsult handleConstraintViolationException(ConstraintViolationException e, HttpServletRequest request) {
+    protected DefaultErrorResult handleConstraintViolationException(ConstraintViolationException e, HttpServletRequest request) {
         log.info("handleConstraintViolationException start, uri:{}, caused by: ", request.getRequestURI(), e);
-        List<ParameterInvalidItem> parameterInvalidItemList = ConvertUtil.convertCVSetToParameterInvalidItemList(e.getConstraintViolations());
+        List<ParameterInvalidItem> parameterInvalidItemList = ParameterInvalidItemHelper.convertCVSetToParameterInvalidItemList(e.getConstraintViolations());
         return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
     }
 
@@ -33,7 +46,7 @@ public class BaseGlobalExceptionHandler {
      */
     protected DefaultErrorResult handleBindException(BindException e, HttpServletRequest request) {
         log.info("handleBindException start, uri:{}, caused by: ", request.getRequestURI(), e);
-        List<ParameterInvalidItem> parameterInvalidItemList = ConvertUtil.convertBindingResultToMapParameterInvalidItemList(e.getBindingResult());
+        List<ParameterInvalidItem> parameterInvalidItemList = ParameterInvalidItemHelper.convertBindingResultToMapParameterInvalidItemList(e.getBindingResult());
         return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
     }
 
@@ -42,7 +55,7 @@ public class BaseGlobalExceptionHandler {
      */
     protected DefaultErrorResult handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
         log.info("handleMethodArgumentNotValidException start, uri:{}, caused by: ", request.getRequestURI(), e);
-        List<ParameterInvalidItem> parameterInvalidItemList = ConvertUtil.convertBindingResultToMapParameterInvalidItemList(e.getBindingResult());
+        List<ParameterInvalidItem> parameterInvalidItemList = ParameterInvalidItemHelper.convertBindingResultToMapParameterInvalidItemList(e.getBindingResult());
         return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
     }
 

@@ -1,5 +1,10 @@
 package com.kylin.Result;
 
+import com.kylin.enums.ExceptionEnum;
+import com.kylin.enums.ResultCode;
+import com.kylin.exception.BusinessException;
+import com.kylin.utils.RequestContextUtil;
+import com.kylin.utils.StringUtils;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
@@ -13,7 +18,7 @@ import java.util.Date;
 public class DefaultErrorResult implements Serializable {
 
     /**
-     * HTTP响应状态码 {@link org.springframework.http.HttpStatus}
+     * HTTP响应状态码 {@link HttpStatus}
      */
     private Integer status;
 
@@ -68,7 +73,8 @@ public class DefaultErrorResult implements Serializable {
         result.setStatus(httpStatus.value());
         result.setError(httpStatus.getReasonPhrase());
         result.setException(e.getClass().getName());
-        result.setPath(RequestContextHolderUtil.getRequest().getRequestURI());
+        String path = RequestContextUtil.getRequest().getRequestURI();
+        result.setPath(path);
         result.setTimestamp(new Date());
         return result;
     }
@@ -80,7 +86,7 @@ public class DefaultErrorResult implements Serializable {
         }
 
         DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e.getResultCode() == null ? ResultCode.SUCCESS : e.getResultCode(), e, HttpStatus.OK, e.getData());
-        if (StringUtil.isNotEmpty(e.getMessage())) {
+        if (StringUtils.isNotEmpty(e.getMessage())) {
             defaultErrorResult.setMessage(e.getMessage());
         }
         return defaultErrorResult;

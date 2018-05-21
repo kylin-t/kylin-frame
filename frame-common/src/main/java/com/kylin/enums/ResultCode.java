@@ -1,16 +1,17 @@
-package com.kylin.Result;
+package com.kylin.enums;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @Author kylin
- * Description  API统一返回状态码
- * @Date Created in 2018/05/17 17:18
+ * Description  API 统一返回状态码
+ * @Date Created in 2018/05/21 11:03
  */
 public enum ResultCode {
+
     /* 成功状态码 */
-    SUCCESS(1, "success"),
+    SUCCESS(1, "成功"),
 
     /* 参数错误：10001-19999 */
     PARAM_IS_INVALID(10001, "参数无效"),
@@ -24,9 +25,10 @@ public enum ResultCode {
     USER_ACCOUNT_FORBIDDEN(20003, "账号已被禁用"),
     USER_NOT_EXIST(20004, "用户不存在"),
     USER_HAS_EXISTED(20005, "用户已存在"),
+    LOGIN_CREDENTIAL_EXISTED(20006, "凭证已存在"),
 
     /* 业务错误：30001-39999 */
-    SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "某业务出现问题"),
+    SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "业务错误"),
 
     /* 系统错误：40001-49999 */
     SYSTEM_INNER_ERROR(40001, "系统繁忙，请稍后重试"),
@@ -45,7 +47,9 @@ public enum ResultCode {
     INTERFACE_EXCEED_LOAD(60006, "接口负载过高"),
 
     /* 权限错误：70001-79999 */
-    PERMISSION_NO_ACCESS(70001, "无访问权限");
+    PERMISSION_NO_ACCESS(70001, "无访问权限"),
+    RESOURCE_EXISTED(70002, "资源已存在"),
+    RESOURCE_NOT_EXISTED(70003, "资源不存在");
 
     private Integer code;
 
@@ -87,16 +91,20 @@ public enum ResultCode {
         return this.name();
     }
 
-    //校验重复的code值
-    public static void main(String[] args) {
-        ResultCode[] ApiResultCodes = ResultCode.values();
+    /***
+     * 校验重复的code值
+     */
+    static void main(String[] args) {
+        ResultCode[] apiResultCodes = ResultCode.values();
         List<Integer> codeList = new ArrayList<Integer>();
-        for (ResultCode ApiResultCode : ApiResultCodes) {
-            if (codeList.contains(ApiResultCode.code)) {
-                System.out.println(ApiResultCode.code);
+        for (ResultCode apiResultCode : apiResultCodes) {
+            if (codeList.contains(apiResultCode.code)) {
+                System.out.println(apiResultCode.code);
             } else {
-                codeList.add(ApiResultCode.code());
+                codeList.add(apiResultCode.code());
             }
+
+            System.out.println(apiResultCode.code() + " " + apiResultCode.message());
         }
     }
 }

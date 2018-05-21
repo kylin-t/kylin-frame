@@ -1,5 +1,7 @@
 package com.kylin.Result;
 
+import com.kylin.enums.ResultCode;
+
 import java.io.Serializable;
 
 /**
