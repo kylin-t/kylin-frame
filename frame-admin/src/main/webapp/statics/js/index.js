@@ -111,6 +111,7 @@ function initMenu() {
                 html+='</a>';
                 //子菜单
                 var childList = menu.childList;
+                console.log(childList);
                 for (var j=0;j<childList.length;j++){
                     var childMenu=childList[j];
                     if(childMenu.menuType == 1){

@@ -20,10 +20,27 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="statics/plugins/jquery/jquery.min.js"></script>
     <link href="statics/plugins/contextMenu/jquery.contextMenu.min.css" rel="stylesheet">
+    <link href="statics/css/index.css" rel="stylesheet">
     <script src="statics/plugins/contextMenu/jquery.contextMenu.min.js"></script>
     <link rel="stylesheet" type="text/css" href="statics/css/fs.css?v=1.8.2" media="all"/>
     <script type="text/javascript" src="statics/plugins/layui/layui.js"></script>
 
+    <style>
+        .msg-num{
+            background: red;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            border-radius: 10px;
+            line-height: 18px;
+            font-size: 12px;
+            color: #FFF;
+            text-align: center;
+            position: absolute;
+            top: 14px;
+            right: 5px;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin" id="layui_layout">
@@ -34,7 +51,7 @@
             <!-- logo区域 -->
             <div class="admin-logo-box">
                 <!--<a href="#"><img src="statics/images/logo.png"></a>-->
-                <a class="logo" href="javascript:;">hxyFrame系统</a>
+                <a class="logo" href="javascript:;">kylin-frame</a>
                 <div class="larry-side-menu">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </div>
@@ -108,22 +125,41 @@
 
     <!-- 左侧侧边导航结束 -->
 
-    <!-- 右边内容区域 -->
-    <div class="layui-body layui-form">
-        <div class="layui-tab layui-tab-card fsTab" lay-filter="fsTab" lay-allowClose="true">
-
-            <!-- 菜单导航 -->
-            <ul class="layui-tab-title" id="fsTabMenu">
-                <li class="layui-this" lay-id="111"><i class="layui-icon">&#xe68e;</i><cite>首页</cite><p class="layui-tab-close" style="display: none;"></p></li>
+    <!-- 右侧主体内容 -->
+    <div class="layui-body" id="larry-body" style="bottom: 0;border-left: solid 2px #1AA094;">
+        <div class="layui-tab layui-tab-card larry-tab-box" id="larry-tab" lay-filter="main-tab" lay-allowClose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" id="admin-home"><i class="fa fa-home"></i><em>控制台</em></li>
             </ul>
-
-                    <!-- 内容 -->
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show" lay-id="1">
-                    <iframe src="main.html"></iframe>
+            <!--<div class="often key-press" lay-filter="larryOperate" id="buttonRCtrl">
+                <ul class="layui-nav posr">
+                    <li class="layui-nav-item posb">
+                        <a class="top"><i class="larry-icon larry-caozuo"></i><cite>常用操作</cite><span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a data-ename="closeCurrent"><i class="larry-icon larry-guanbidangqianye"></i>关闭当前选项卡</a>
+                            </dd>
+                            <dd>
+                                <a data-ename="closeOther"><i class="larry-icon larry-guanbiqita"></i>关闭其他选项卡</a>
+                            </dd>
+                            <dd>
+                                <a data-ename="closeAll"><i class="larry-icon larry-guanbiquanbufenzu"></i>关闭全部选项卡</a>
+                            </dd>
+                            <dd>
+                                <a data-ename="refreshAdmin"><i class="larry-icon larry-kuangjia_daohang_shuaxin"></i>刷新最外层框架</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>-->
+            <div class="layui-tab-content" style="min-height: 150px; ">
+                <div class="layui-tab-item layui-show">
+                    <iframe id="mainFrame" class="larry-iframe" data-id='0' src="main.html"></iframe>
                 </div>
             </div>
         </div>
+
+
     </div>
 
     <!--<div class="layui-footer">-->
