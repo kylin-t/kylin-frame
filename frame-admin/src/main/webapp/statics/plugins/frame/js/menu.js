@@ -12,8 +12,8 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 			loadUrl : "sys/menu/nav", //加载数据地址
 			method : "post",//请求类型，默认post
 			rootMenuId : 0, //根目录菜单id
-			defaultSelectTopMenuId : "1", //默认选中头部菜单id
-			defaultSelectLeftMenuId : "111", //默认选中左边菜单id
+			defaultSelectTopMenuId : 1, //默认选中头部菜单id
+			defaultSelectLeftMenuId : 2, //默认选中左边菜单id
 			menuIdField : "menuId", //菜单id
 			menuNameField : "menuName", //菜单名称
 			menuIconField : "icon" , //菜单图标，图标必须用css
@@ -76,7 +76,6 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 				return;
 			}
 			fsCommon.invoke(url,{},function(r){
-				console.log(r);
   			if(r.code == 1) {
   				menuConfig.data = r.data;
   			}else{
@@ -129,8 +128,6 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 			var fsTopMenuElem = $("#fsTopMenu");
 			var fsLeftMenu = $("#fsLeftMenu");
 			$.each(data,function(i,v){
-				console.log(menuConfig.rootMenuId );
-				console.log(v[menuConfig.parentMenuIdField] );
 				if(menuConfig.rootMenuId === v[menuConfig.parentMenuIdField]){
 
 					var topStr = '<li class="layui-nav-item';
@@ -146,7 +143,6 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 					//显示二级菜单，循环判断是否有子栏目
 					$.each(data,function(i2,v2){
 						if(v[menuConfig.menuIdField] === v2[menuConfig.parentMenuIdField]){
-
 							var menuRow = '<li class="layui-nav-item';
 							if(!$.isEmpty(menuConfig.defaultSelectLeftMenuId) && menuConfig.defaultSelectLeftMenuId == v2[menuConfig.menuIdField]){//默认选中处理
 								menuRow += ' layui-this';
@@ -154,6 +150,7 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 							//显示三级菜单，循环判断是否有子栏目
 							var menuRow3 = "";
 							$.each(data,function(i3,v3){
+							    console.log(v2[menuConfig.menuIdField] === v3[menuConfig.parentMenuIdField]);
 								if(v2[menuConfig.menuIdField] === v3[menuConfig.parentMenuIdField]){
 									if($.isEmpty(menuRow3)){
 										menuRow3 = '<dl class="layui-nav-child">';

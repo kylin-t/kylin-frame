@@ -111,15 +111,14 @@ function initMenu() {
                 html+='</a>';
                 //子菜单
                 var childList = menu.childList;
-                console.log(childList);
                 for (var j=0;j<childList.length;j++){
                     var childMenu=childList[j];
                     if(childMenu.menuType == 1){
                         var icon = childMenu.icon;
-                        var name = childMenu.name;
+                        var name = childMenu.menuName;
                         var url = childMenu.url;
                         //菜单
-                        if(childMenu.type == '1'){
+                        if(childMenu.menuType == 1){
                             html+='<dl class="layui-nav-child">';
                             html+='	<dd>';
                             html+='		<a href="javascript:;" data-url="'+url+'">';
@@ -129,14 +128,14 @@ function initMenu() {
                             html+='	</dd>';
                             html+='</dl>';
                         }
-                    }else if(childMenu.type == '1'){
+                    }else if(childMenu.menuType == 1){
 
                     }
                 }
             }
-            if(menu.type == '1'){
+            if(menu.menuType == 1){
                 var icon = menu.icon;
-                var name = menu.name;
+                var name = menu.menuName;
                 var url = menu.url;
                 html+='<a href="javascript:;" data-url="'+url+'">';
                 html+='	<i class="'+icon+'" data-icon="'+icon+'"></i>';
