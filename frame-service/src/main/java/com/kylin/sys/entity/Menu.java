@@ -33,8 +33,6 @@ public class Menu {
      * 排序
      */
     private Integer orderNum;
-    //状态（0显示，-1隐藏)
-    private String status;
     /**
      * 权限标识
      */
@@ -102,14 +100,6 @@ public class Menu {
 
     public void setOrderNum(Integer orderNum) {
         this.orderNum = orderNum;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getPermission() {

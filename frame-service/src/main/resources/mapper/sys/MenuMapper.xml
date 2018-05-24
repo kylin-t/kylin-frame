@@ -26,4 +26,40 @@
 		WHERE
 			parent_id = #{parentId} order by order_num asc
 	</select>
+	<insert id="save" parameterType="com.kylin.sys.entity.Menu">
+		INSERT INTO sys_menu (
+			parent_id,
+			menu_name,
+			url,
+			permission,
+			menu_type,
+			icon,
+			order_num
+		)
+		VALUES(
+			#{parentId},
+			#{menuName},
+			#{url},
+			#{permission},
+			#{menuType},
+			#{icon},
+			#{orderNum}
+		)
+	</insert>
+	<select id="queryObject" resultType="com.kylin.sys.entity.Menu">
+		select * from sys_menu where menu_id = #{menuId}
+	</select>
+	<update id="update" parameterType="com.kylin.sys.entity.Menu">
+		update sys_menu
+		<set>
+			<if test="parentId!=null">parent_id = #{parentId},</if>
+			<if test="menuName!=null">menu_name = #{menuName},</if>
+			<if test="url!=null">url = #{url},</if>
+			<if test="permission!=null">permission = #{permission},</if>
+			<if test="menuType!=null">menu_type = #{menuType},</if>
+			<if test="icon!=null">icon = #{icon},</if>
+			<if test="orderNum!=null">order_num = #{orderNum}</if>
+		</set>
+	  	where menu_id = #{menuId}
+	</update>
 </mapper>

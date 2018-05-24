@@ -6,8 +6,8 @@
  * @License：MIT
  */
 layui.config({
-  base : "statics/plugins/frame/js/",//设定扩展的Layui模块的所在目录，一般用于外部模块扩展
-	version : '1.8.2'
+  base : 'http://localhost:8080/kylin-frame/statics/plugins/frame/js/',//设定扩展的Layui模块的所在目录，一般用于外部模块扩展
+    version : '1.8.2'
 });
 
 layui.fsUtil={};

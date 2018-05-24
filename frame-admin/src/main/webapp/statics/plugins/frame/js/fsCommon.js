@@ -11,9 +11,9 @@ layui.define(['layer','form','fsConfig','fsButtonCommon'], function (exports) {
     layer = layui.layer,
     fsConfig = layui.fsConfig,
     fsButtonCommon = layui.fsButtonCommon,
-    statusName = $.result(fsConfig,"global.result.statusName","errorNo"),
-    msgName = $.result(fsConfig,"global.result.msgName","errorInfo"),
-    dataName = $.result(fsConfig,"global.result.dataName","results.data"),
+    statusName = $.result(fsConfig,"global.result.statusName","code"),
+    msgName = $.result(fsConfig,"global.result.msgName","msg"),
+    dataName = $.result(fsConfig,"global.result.dataName","data"),
     loadDataType = $.result(fsConfig,"global.loadDataType","0"),
     successNo = $.result(fsConfig,"global.result.successNo","0"),
   	servletUrl = $.result(fsConfig,"global.servletUrl");
@@ -62,7 +62,7 @@ layui.define(['layer','form','fsConfig','fsButtonCommon'], function (exports) {
         method = "post";
       }
     	//打开加载层
-    	var index = layer.load();
+		var index = layer.load();
       $.ajax({
         url: url,
         type: method,
@@ -70,6 +70,7 @@ layui.define(['layer','form','fsConfig','fsButtonCommon'], function (exports) {
         data: param,
         dataType : "json",
         success: function(result){
+        	console.log(result);
           if(result[statusName] != successNo){
             var filters = fsConfig["filters"];
             if(!$.isEmpty(filters)){
@@ -79,6 +80,7 @@ layui.define(['layer','form','fsConfig','fsButtonCommon'], function (exports) {
                 return;
               }
             }
+            console.log(successNo);
           }
           callBackFunc(result);
         },

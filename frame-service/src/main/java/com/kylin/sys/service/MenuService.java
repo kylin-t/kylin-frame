@@ -35,4 +35,10 @@ public interface MenuService {
      */
     List<Menu> getUserMenuList(Long userId);
 
+    void save(Menu menu);
+
+    Menu queryObject(Long menuId);
+
+    void update(Menu menu);
+
 }

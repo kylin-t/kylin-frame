@@ -150,7 +150,6 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 							//显示三级菜单，循环判断是否有子栏目
 							var menuRow3 = "";
 							$.each(data,function(i3,v3){
-							    console.log(v2[menuConfig.menuIdField] === v3[menuConfig.parentMenuIdField]);
 								if(v2[menuConfig.menuIdField] === v3[menuConfig.parentMenuIdField]){
 									if($.isEmpty(menuRow3)){
 										menuRow3 = '<dl class="layui-nav-child">';

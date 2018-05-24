@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -56,9 +57,10 @@ public class MenuServiceImpl implements MenuService {
      */
     private List<Menu> getAllMenuList(List<Long> menuIdList){
         //查询根菜单列表
-        List<Menu> menuList = queryListByParentId(0L,menuIdList);
+//        List<Menu> menuList = queryListByParentId(0L,menuIdList);
         //递归获取子菜单
-        getChildMenuList(menuList,menuIdList);
+//        getChildMenuList(menuList,menuIdList);
+        List<Menu> menuList = menuDao.queryList(new HashMap<>());
         return menuList;
     }
 
@@ -80,6 +82,18 @@ public class MenuServiceImpl implements MenuService {
        return childMenuList;
     }
 
+    @Override
+    public void save(Menu menu) {
+        menuDao.save(menu);
+    }
 
+    @Override
+    public Menu queryObject(Long menuId) {
+        return menuDao.queryObject(menuId);
+    }
 
+    @Override
+    public void update(Menu menu) {
+        menuDao.update(menu);
+    }
 }
