@@ -2,6 +2,9 @@ package com.kylin.sys.dao;
 
 import com.kylin.sys.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Description:  RoleDao组件
@@ -11,4 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RoleDao extends BaseDao<Role> {
+
+    List<Role> queryByUserId(@Param("userId") Long userId, @Param("status") Integer status);
 }

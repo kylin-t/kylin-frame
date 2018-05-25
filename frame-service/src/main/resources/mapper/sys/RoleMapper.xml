@@ -5,7 +5,47 @@
 	<select id="queryList" resultType="com.kylin.sys.entity.Role">
 		select * from sys_role
 	</select>
-	<select id="save" parameterType="com.kylin.sys.entity.User">
-		insert into sys_user (username) values (#{username})
+	<insert id="save" parameterType="com.kylin.sys.entity.Role">
+		INSERT INTO sys_role (
+			role_name,
+			role_code,
+			role_type,
+			status,
+			remark
+		)
+		VALUES(
+			#{roleName},
+			#{roleCode},
+			#{roleType},
+			#{status},
+			#{remark}
+		)
+	</insert>
+
+	<select id="queryObject" resultType="com.kylin.sys.entity.Role">
+		select * from sys_role where role_id = #{roleId}
 	</select>
+
+	<update id="update" parameterType="com.kylin.sys.entity.Role">
+		update sys_role
+		<set>
+			<if test="roleName != null">role_name = #{roleName}, </if>
+			<if test="roleCode != null">role_code = #{roleCode}, </if>
+			<if test="roleType != null">role_type = #{roleType}, </if>
+			<if test="status != null">status = #{status}, </if>
+			<if test="remark != null">remark = #{remark}</if>
+		</set>
+		where role_id = #{roleId}
+	</update>
+
+	<delete id="delete">
+		delete from sys_role where role_id = #{roleId}
+	</delete>
+
+	<delete id="deleteBatch">
+		delete from sys_role where role_id in
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
 </mapper>

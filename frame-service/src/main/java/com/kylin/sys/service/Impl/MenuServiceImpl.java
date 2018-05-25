@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:  菜单管理
@@ -21,6 +22,11 @@ import java.util.List;
 public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuDao menuDao;
+
+    @Override
+    public List<Menu> queryList(Map<String, Object> map) {
+        return menuDao.queryList(map);
+    }
 
     @Override
     public List<Menu> queryListByParentId(Long parentId) {

@@ -63,12 +63,12 @@
             <div class="layui-col-md12">
                 <div class="layui-row grid-demo">
                     <div class="layui-col-md12">
-                        <button class="layui-btn" function="top" topUrl="views/datagrid/add.html" topWidth="800px"
-                                isMaximize="0" topHeight="600px" topTitle="新增demo">
+                        <button class="layui-btn" function="top" topUrl="views/sys/role/add.html" topWidth="600px"
+                                isMaximize="0" topHeight="460px" topTitle="新增角色">
                             <i class="layui-icon">&#xe654;</i>新增
                         </button>
-                        <button class="layui-btn layui-btn-danger" function="submit" method="get" url="/fsbus/1002"
-                                isMutiDml="1" isConfirm="1" confirmMsg="是否确定删除选中的数据？" inputs="id:">
+                        <button class="layui-btn layui-btn-danger" function="submit" method="get" url="sys/role/delete"
+                                isMutiDml="1" isConfirm="1" confirmMsg="是否确定删除选中的数据？" inputs="roleId:">
                             <i class="layui-icon">&#xe640;</i>批量删除
                         </button>
                         <button class="layui-btn" function="refresh">
@@ -88,22 +88,22 @@
                             <p field="roleId" title="roleId" width="100" sort="true"/>
                             <p field="roleName" title="角色名称" width="30%" sort="true"/>
                             <p field="roleCode" title="角色编码" width="150" />
-                            <p field="roleType" title="角色类型" width="100" />
-                            <p field="status" title="状态" width="100" dict="status"/>
-                            <p field="remark" title="备注" width="100" dict="remark"/>
+                            <p field="roleType" title="角色类型" width="100" dict="roleType" />
+                            <p field="status" title="状态" width="100" templet="#stateTpl"/>
+                            <p field="remark" title="备注" width="100"/>
                             <p fixed="right" align="center" toolbar="#barDemo" title="操作" width="220"/>
                         </div>
 
                         <script type="text/html" id="stateTpl">
-                            <input type="checkbox" name="state" lay-skin="switch" disabled lay-text="开启|关闭" {{ d.state==
+                            <input type="checkbox" name="status" lay-skin="switch" disabled lay-text="正常|禁用" {{ d.status==
                                    1 ? 'checked' : '' }}>
                         </script>
                         <script type="text/html" id="barDemo">
                             <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="top"
                                topUrl="views/datagrid/edit.html" topMode="readonly" topWidth="800px" topHeight="600px"
                                topTitle="查看demo" inputs="id:">查看</a>
-                            <a class="layui-btn layui-btn-xs" lay-event="top" topUrl="views/datagrid/edit.html"
-                               topWidth="800px" topHeight="600px" topTitle="编辑demo" inputs="id:">编辑</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="top" topUrl="views/sys/role/edit.html"
+                               topWidth="600px" topHeight="460px" topTitle="编辑角色" inputs="roleId:">编辑</a>
                             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="submit" url="/fsbus/1002"
                                isConfirm="1" method="get" confirmMsg="是否确定删除当前记录？" inputs="id:">删除</a>
                             <a class="layui-btn layui-btn-xs" lay-event="test2">测试</a>

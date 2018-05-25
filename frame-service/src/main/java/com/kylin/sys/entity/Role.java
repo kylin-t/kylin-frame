@@ -26,9 +26,9 @@ public class Role {
      */
     private String roleCode;
     /**
-     * 角色状态  0：正常  1  禁用
+     * 角色状态  1：正常  0  禁用
      */
-    private Integer status;
+    private Integer status = 0;
     /**
      * 角色类型
      */

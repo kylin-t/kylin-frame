@@ -20,4 +20,14 @@ public interface RoleService {
     Role queryObject(Long roleId);
 
     void update(Role role);
+
+    void deleteBatch(String roleIds);
+
+    /**
+     * 根据用户ID查询拥有的所有角色
+     * @param userId
+     * @return
+     */
+    List<Role> queryByUserId(Long userId,Integer status);
+
 }

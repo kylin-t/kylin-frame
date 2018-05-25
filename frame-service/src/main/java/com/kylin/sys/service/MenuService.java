@@ -4,6 +4,7 @@ package com.kylin.sys.service;
 import com.kylin.sys.entity.Menu;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:  菜单管理service
@@ -12,6 +13,8 @@ import java.util.List;
  * @Date: 2018/04/29 16:02
  */
 public interface MenuService {
+
+    List<Menu> queryList(Map<String,Object> map);
 
     /**
      * 根据父菜单id查询所有的子菜单列表

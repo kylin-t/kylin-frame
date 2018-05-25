@@ -28,16 +28,31 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void save(Role role) {
-
+        roleDao.save(role);
     }
 
     @Override
     public Role queryObject(Long roleId) {
-        return null;
+        return roleDao.queryObject(roleId);
     }
 
     @Override
     public void update(Role role) {
+        roleDao.update(role);
+    }
 
+    @Override
+    public void deleteBatch(String roleIds) {
+        String[] strIds = roleIds.split(",");
+        Long[] longIds = new Long[strIds.length];
+        for (int i = 0;i<strIds.length;i++){
+            longIds[i] = new Long(strIds[i]);
+        }
+        roleDao.deleteBatch(longIds);
+    }
+
+    @Override
+    public List<Role> queryByUserId(Long userId,Integer status) {
+        return roleDao.queryByUserId(userId,status);
     }
 }
