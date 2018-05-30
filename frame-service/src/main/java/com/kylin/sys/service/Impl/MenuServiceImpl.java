@@ -102,4 +102,9 @@ public class MenuServiceImpl implements MenuService {
     public void update(Menu menu) {
         menuDao.update(menu);
     }
+
+    @Override
+    public List<Menu> queryByUserId(Long userId) {
+        return menuDao.queryByUserId(userId);
+    }
 }

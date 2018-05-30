@@ -62,4 +62,24 @@
 		</set>
 	  	where menu_id = #{menuId}
 	</update>
+
+	<select id="queryByUserId" resultType="com.kylin.sys.entity.Menu">
+		SELECT DISTINCT
+			m.*, (
+				SELECT
+					tm.menu_name
+				FROM
+					sys_menu tm
+				WHERE
+					tm.menu_id = m.parent_id
+			) AS parentName
+		FROM
+			sys_user_role ur
+		LEFT JOIN sys_role r ON ur.role_id = r.role_id
+		LEFT JOIN sys_role_menu rm ON r.role_id = rm.role_id
+		LEFT JOIN sys_menu m ON m.menu_id = rm.menu_id
+		WHERE
+			ur.user_id = #{userId} AND AND r.status = 1 ORDER BY m.order_num ASC;
+	</select>
+
 </mapper>

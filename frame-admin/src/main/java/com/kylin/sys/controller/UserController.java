@@ -22,8 +22,9 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("list")
+    @RequestMapping("/list")
     public Result list(Map<String,Object> map){
+        User user = getUser();
         List<User> list = userService.queryList(map);
         return Result.success(list);
     }

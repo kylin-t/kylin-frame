@@ -26,4 +26,6 @@ public interface UserService {
     void delete(String id);
 
     void deleteBatch(String[] ids);
+
+    User queryByUserame(String username);
 }

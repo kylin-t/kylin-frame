@@ -19,4 +19,11 @@ public interface MenuDao extends BaseDao<Menu> {
      * @return
      */
     List<Menu> queryListByParentId(Long parentId);
+
+    /**
+     * 根据用户ID查询拥有的菜单列表
+     * @param userId
+     * @return
+     */
+    List<Menu> queryByUserId(Long userId);
 }

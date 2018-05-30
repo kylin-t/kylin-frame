@@ -9,4 +9,15 @@
 	<select id="save" parameterType="com.kylin.sys.entity.User">
 		insert into sys_user (username) values (#{username})
 	</select>
+
+	<!--根据登陆用户查询有效的用户-->
+	<select id="queryByUserame" resultType="com.kylin.sys.entity.User">
+		SELECT
+			u.*,
+			(SELECT org_name FROM sys_org o WHERE o.org_id = u.org_id) AS orgName
+		FROM
+			sys_user u
+		WHERE
+			username = #{0}	</select>
+
 </mapper>

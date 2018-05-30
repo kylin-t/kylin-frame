@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
     public void deleteBatch(String[] ids) {
 
     }
+
+    @Override
+    public User queryByUserame(String username) {
+        return userDao.queryByUserame(username);
+    }
 }

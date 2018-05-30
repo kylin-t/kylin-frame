@@ -12,4 +12,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserDao extends BaseDao<User> {
 
+    /**
+     * 根据用户名查询有效的用户
+     * @param username
+     * @return
+     */
+    User queryByUserame(String username);
 }

@@ -4,7 +4,6 @@ import com.kylin.Result.Result;
 import com.kylin.sys.entity.Menu;
 import com.kylin.sys.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +30,7 @@ public class MenuController extends BaseController {
         List<Menu> menuList = menuService.getUserMenuList(1L);
         return Result.success(menuList);
     }
-    @RequestMapping("save")
+    @RequestMapping("/save")
     public Result save( Menu menu){
         menuService.save(menu);
         return Result.success();

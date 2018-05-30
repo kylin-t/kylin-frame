@@ -7,9 +7,16 @@ import com.kylin.sys.service.MenuService;
 import com.kylin.sys.service.RoleService;
 import com.kylin.sys.service.UserService;
 import com.kylin.utils.Constant;
+import com.kylin.utils.ShiroUtils;
+import com.kylin.utils.StringUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +31,7 @@ import java.util.Set;
  * Description  shiro认证
  * @Date Created in 2018/05/25 17:21
  */
-public class MyRealm {
+public class MyRealm extends AuthorizingRealm {
 
     private static final Logger logger = LoggerFactory.getLogger(MyRealm.class);
     @Autowired
@@ -46,17 +53,17 @@ public class MyRealm {
             //查询所有该用户授权菜单，并加到shiro的SimpleAuthorizationInfo 做菜单按钮权限控件
 
             Set<String> permissions = new HashSet<>();
-            List<Menu> menu = null;
+            List<Menu> menuList = null;
             //超级管理员拥有最高权限
             if (Constant.SUPER_ADMIN == user.getUserId()) {
-                menu = menuService.queryList(new HashMap<>());
+                menuList = menuService.queryList(new HashMap<>());
             } else {
                 //普通帐户权限查询
-                menu = menuService.queryByUserId(user.getId());
+                menuList = menuService.queryByUserId(user.getUserId());
             }
-            for (MenuEntity menuEntity : menuEntities) {
-                if (StringUtils.isNotEmpty(menuEntity.getPermission())) {
-                    permissions.add(menuEntity.getPermission());
+            for (Menu menu : menuList) {
+                if (StringUtils.isNotEmpty(menu.getPermission())) {
+                    permissions.add(menu.getPermission());
                 }
             }
             info.addStringPermissions(permissions);
@@ -66,20 +73,20 @@ public class MyRealm {
 
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userLoginName = (String) token.getPrincipal();
-        UserEntity user = userService.queryByLoginName(userLoginName);
+        User user = userService.queryByUserame(userLoginName);
         if (user == null) {
             throw new AuthenticationException("帐号密码错误");
         }
-        if (Constant.ABLE_STATUS.NO.getValue().equals(user.getStatus())) {
+        if (Constant.STATUS.DISABLED.getValue() == user.getStatus()) {
             throw new LockedAccountException("帐号被禁用,请联系管理员!");
         }
-        //用户对应的机构集合
-        List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
-        //用户对应的部门集合
-        List<String> bapidList = userService.queryBaidByUserIdArray(user.getId());
-        user.setBapidList(bapidList);
-        user.setBaidList(baidList);
-        SimpleAuthenticationInfo sainfo = new SimpleAuthenticationInfo(user, user.getPassWord(), ByteSource.Util.bytes(user.getSalt()), getName());
+//        //用户对应的机构集合
+//        List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
+//        //用户对应的部门集合
+//        List<String> bapidList = userService.queryBaidByUserIdArray(user.getId());
+//        user.setBapidList(bapidList);
+//        user.setBaidList(baidList);
+        SimpleAuthenticationInfo sainfo = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
         return sainfo;
     }
 
