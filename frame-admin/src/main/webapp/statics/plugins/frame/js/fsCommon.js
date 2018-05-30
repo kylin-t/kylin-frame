@@ -70,7 +70,6 @@ layui.define(['layer','form','fsConfig','fsButtonCommon'], function (exports) {
         data: param,
         dataType : "json",
         success: function(result){
-        	console.log(result);
           if(result[statusName] != successNo){
             var filters = fsConfig["filters"];
             if(!$.isEmpty(filters)){
@@ -80,7 +79,6 @@ layui.define(['layer','form','fsConfig','fsButtonCommon'], function (exports) {
                 return;
               }
             }
-            console.log(successNo);
           }
           callBackFunc(result);
         },
