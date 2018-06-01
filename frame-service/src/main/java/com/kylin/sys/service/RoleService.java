@@ -1,6 +1,7 @@
 package com.kylin.sys.service;
 
 import com.kylin.sys.entity.Role;
+import com.kylin.utils.Filter;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 public interface RoleService {
 
-    List<Role> queryList(Map<String,Object> map);
+    List<Role> queryList(Filter filter);
 
     void save(Role role);
 
@@ -22,6 +23,8 @@ public interface RoleService {
     void update(Role role);
 
     void deleteBatch(String roleIds);
+
+    int queryTotal(Filter filter);
 
     /**
      * 根据用户ID查询拥有的所有角色

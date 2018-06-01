@@ -44,13 +44,13 @@ public class UserServiceTest {
         u.setUsername("kylin");
         userService.save(u);
     }
-    @Test
-    public void queryList(){
-        Map<String,Object> map = new HashMap<>();
-        List<User> list = userService.queryList(map);
-        for (User user:
-             list) {
-            System.out.println(user);
-        }
-    }
+//    @Test
+//    public void queryList(){
+//        Map<String,Object> map = new HashMap<>();
+//        List<User> list = userService.queryList(map);
+//        for (User user:
+//             list) {
+//            System.out.println(user);
+//        }
+//    }
 }

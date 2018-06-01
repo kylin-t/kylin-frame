@@ -20,6 +20,10 @@ public class Org implements Serializable {
      */
     private Long parentId;
     /**
+     * 机构编码
+     */
+    private String orgCode;
+    /**
      * 部门名称
      */
     private String orgName;
@@ -55,6 +59,14 @@ public class Org implements Serializable {
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
     }
 
     public String getOrgName() {

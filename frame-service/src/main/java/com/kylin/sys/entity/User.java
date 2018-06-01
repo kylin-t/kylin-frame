@@ -55,7 +55,8 @@ public class User implements Serializable {
     /**
      * 角色ID列表
      */
-    private List<Long> roleList;
+    private List<Long> roleIdList;
+    private String roleIdStr;
     /**
      * 创建时间
      */
@@ -123,12 +124,20 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public List<Long> getRoleList() {
-        return roleList;
+    public List<Long> getRoleIdList() {
+        return roleIdList;
     }
 
-    public void setRoleList(List<Long> roleList) {
-        this.roleList = roleList;
+    public void setRoleIdList(List<Long> roleIdList) {
+        this.roleIdList = roleIdList;
+    }
+
+    public String getRoleIdStr() {
+        return roleIdStr;
+    }
+
+    public void setRoleIdStr(String roleIdStr) {
+        this.roleIdStr = roleIdStr;
     }
 
     public Date getCreateTime() {

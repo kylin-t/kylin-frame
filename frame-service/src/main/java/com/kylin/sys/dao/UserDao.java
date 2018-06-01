@@ -3,6 +3,8 @@ package com.kylin.sys.dao;
 import com.kylin.sys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @Description:  系统用户dao
  * @Auther: kylin
@@ -18,4 +20,9 @@ public interface UserDao extends BaseDao<User> {
      * @return
      */
     User queryByUserame(String username);
+    /**
+     * 查询用户的所有权限
+     * @param userId  用户ID
+     */
+    List<String> queryAllPerms(Long userId);
 }

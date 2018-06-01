@@ -3,9 +3,11 @@ package com.kylin.sys.controller;
 import com.kylin.Result.Result;
 import com.kylin.sys.entity.Role;
 import com.kylin.sys.service.RoleService;
+import com.kylin.utils.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +24,13 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @RequestMapping("/list")
-    public Result list(@RequestParam Map<String, Object> map) {
-        List<Role> list = roleService.queryList(map);
-        return Result.success(list);
+    public Result list(Filter filter) {
+        List<Role> list = roleService.queryList(filter);
+        int total = roleService.queryTotal(filter);
+        Map<String,Object> map = new HashMap<>();
+        map.put("list",list);
+        map.put("total",total);
+        return Result.success(map);
     }
 
     @RequestMapping("/save")

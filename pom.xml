@@ -38,7 +38,6 @@
         <commons.configuration.version>1.10</commons.configuration.version>
         <commons.codec.version>1.9</commons.codec.version>
         <hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
-        <kaptcha.version>0.0.9</kaptcha.version>
     </properties>
 
     <dependencies>
@@ -268,12 +267,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
-        </dependency>
-        <!--验证码生成工具-->
-        <dependency>
-            <groupId>com.github.axet</groupId>
-            <artifactId>kaptcha</artifactId>
-            <version>${kaptcha.version}</version>
         </dependency>
         <!--swagger2-->
         <dependency>

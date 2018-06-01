@@ -14,7 +14,9 @@ layui.define(["fsCommon", "table", 'laypage', 'fsConfig', 'form', 'fsButtonCommo
         fsButton = layui.fsButtonCommon,
         statusName = $.result(fsConfig, "global.result.statusName", "errorNo"),
         msgName = $.result(fsConfig, "global.result.msgName", "errorInfo"),
-        dataName = $.result(fsConfig, "global.result.dataName", "results.data"),
+        dataName = $.result(fsConfig, "global.result.dataName", "data"),
+        dataNamePage = $.result(fsConfig, "global.page.response.dataNamePage", "data.list"),
+        countName = $.result(fsConfig, "global.page.response.countName", "data.total"),
         defaultLimit = $.result(fsConfig, "global.page.limit", 20),//默认分页数量
         defaultLimits = $.result(fsConfig, "global.page.limits", [10, 20, 30, 50, 100]),//默认每页数据选择项
         loadDataType = $.result(fsConfig, "global.loadDataType", "0"),
@@ -174,9 +176,9 @@ layui.define(["fsCommon", "table", 'laypage', 'fsConfig', 'form', 'fsButtonCommo
                 ,
                 msgName: msgName //状态信息的字段名称，默认：errorInfo
                 ,
-                countName: $.result(fsConfig, "global.page.response.counetName", "total") //数据总数的字段名称，默认：results.data.total
+                countName: countName //数据总数的字段名称，默认：results.data.total
                 ,
-                dataName: isPage == "1" ? $.result(fsConfig, "global.page.response.dataNamePage", "data") : $.result(fsConfig, "global.page.response.dataName", "results.data") //数据列表的字段名称，默认：data
+                dataName: isPage == "1" ? dataNamePage : dataName //数据列表的字段名称，默认：data
             }
         });
         if (thisDatagrid.config.fsSortType == "1") {

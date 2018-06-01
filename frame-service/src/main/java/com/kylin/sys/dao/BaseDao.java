@@ -38,4 +38,6 @@ public interface BaseDao<T> {
 	int queryTotal(Map<String, Object> map);
 
 	int queryTotal();
+
+	int queryTotal(Object obj);
 }

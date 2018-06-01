@@ -85,5 +85,12 @@ layui.fsDict = {
         inputs: "parentid:,area1:#area2222222",
         labelField: "name",
         valueField: "id"
+    },
+    role: {
+        formatType: "server",
+        loadUrl: "/sys/role/list",
+        // inputs: "parentid:,area1:#area2222222",
+        labelField: "roleName",
+        valueField: "roleId"
     }
 };

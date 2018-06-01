@@ -4,6 +4,36 @@
 <mapper namespace="com.kylin.sys.dao.RoleDao">
 	<select id="queryList" resultType="com.kylin.sys.entity.Role">
 		select * from sys_role
+		<where>
+			<if test="id != null">
+				role_id = #{id}
+			</if>
+			<if test="name != null and name.trim() != '' ">
+				and role_name like concat('5',#{name},'%')
+			</if>
+		</where>
+		<choose>
+			<when test="field != null and field.trim() != '' ">
+				order by #{field} #{order}
+			</when>
+			<otherwise>
+				order by role_id asc
+			</otherwise>
+		</choose>
+		<if test="pageNum != null and pageSize != null ">
+			limit #{pageNum},#{pageSize}
+		</if>
+	</select>
+	<select id="queryTotal" resultType="int">
+		select count(*) from sys_role
+		<where>
+			<if test="id != null">
+				role_id = #{id}
+			</if>
+			<if test="name != null and name.trim() != '' ">
+				and role_name like concat('5',#{name},'%')
+			</if>
+		</where>
 	</select>
 	<insert id="save" parameterType="com.kylin.sys.entity.Role">
 		INSERT INTO sys_role (

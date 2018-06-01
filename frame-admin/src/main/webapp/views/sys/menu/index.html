@@ -32,6 +32,9 @@
                         <legend>菜单管理</legend>
                         <div class="layui-field-box">
                             <div class="layui-row layui-col-space10">
+                                <blockquote class="layui-elem-quote layui-quote-nm layui-quote-warn"
+                                            style="border-left:5px solid #FFB800;border-color:#FFB800">温馨提示：鼠标点击右键即可进行组织机构管理
+                                </blockquote>
                                 <div class="layui-col-md12">
                                     <ul id="treeDemo" class="ztree fsTree" method="get" isRoot="1" url="sys/menu/nav"
                                         treeIdKey="menuId" treePIdKey="parentId" treeName="menuName"></ul>
@@ -49,6 +52,44 @@
                                            disabledType="parent|rootNode"></p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="layui-col-md9">
+                    <fieldset id="menu_func_div" class="layui-elem-field">
+                        <legend>按钮管理</legend>
+                        <div class="layui-field-box">
+                            <div class="layui-col-md12 layui-col-space1">
+                                <div id="table_buttion_div">
+                                    <form id="query_form" style="display: none;">
+                                        <input type="text" id="menuId" name="menuId" value="0"/>
+                                    </form>
+                                    <button class="layui-btn layui-btn-sm" function="top" topUrl="views/treeDatagrid/addFunc.html" selectTreeId="menuId" topWidth="700px" topHeight="350px" topTitle="新增功能号信息" inputs="menuId:#menuId">
+                                        <i class="layui-icon">&#xe654;</i>新增
+                                    </button>
+                                    <button class="layui-btn layui-btn-sm" function="refresh" selectTreeId="menuId">
+                                        <i class="layui-icon">&#x1002;</i>刷新
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12 layui-col-space1">
+                                <table id="fsDatagrid" class="fsDatagrid" lay-filter="fsDatagrid" url="/fsbus/S1009" isLoad="0" isPage="0" defaultForm="query_form" height="full-130">
+                                </table>
+
+                                <div class="fsDatagridCols">
+                                    <p type="numbers" title="#"/>
+                                    <p checkbox="true"/>
+                                    <p field="name" title="名称" width="200" sort="true"/>
+                                    <p field="linkUrl" title="访问地址" width="300"/>
+                                    <p field="funcs" title="功能号" width="200"/>
+                                    <p fixed="right" align="center" toolbar="#barDemo" title="操作" width="150"/>
+                                </div>
+
+                                <script type="text/html" id="barDemo">
+                                    <a id="edit" class="layui-btn layui-btn-xs" lay-event="top" topUrl="views/treeDatagrid/editFunc.html" topWidth="700px" topHeight="350px" isSelect="1" topTitle="编辑功能号信息" inputs="id:">编辑</a>
+                                    <a id="del" class="layui-btn layui-btn-danger layui-btn-xs" lay-event="submit" isConfirm="1" url="/fsbus/S1013" inputs="id:">删除</a>
+                                </script>
                             </div>
                         </div>
                     </fieldset>

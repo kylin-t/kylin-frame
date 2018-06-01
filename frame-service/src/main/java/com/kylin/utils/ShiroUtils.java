@@ -1,5 +1,7 @@
 package com.kylin.utils;
 
+import com.kylin.exception.PermissionForbiddenException;
+import com.kylin.exception.RRException;
 import com.kylin.sys.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -14,31 +16,29 @@ import org.apache.shiro.subject.Subject;
  */
 public class ShiroUtils {
 
-    public final static String algorithmName = "SHA-256";
+    /**  加密算法 */
+    public final static String hashAlgorithmName = "SHA-256";
+    /**  循环次数 */
+    public final static int hashIterations = 16;
 
-    /**
-     * 加密散列次数
-     */
-    public static final int hashIterations= 1;
-
-    public static String encodeSalt(String password,String salt){
-        return new SimpleHash(algorithmName,password,salt,hashIterations).toString();
+    public static String sha256(String password, String salt) {
+        return new SimpleHash(hashAlgorithmName, password, salt, hashIterations).toString();
     }
 
-    public static Session getSession(){
+    public static Session getSession() {
         return SecurityUtils.getSubject().getSession();
     }
 
-    public static Subject getSubject(){
+    public static Subject getSubject() {
         return SecurityUtils.getSubject();
     }
 
-    public static User getUser(){
-        return (User) SecurityUtils.getSubject().getPrincipal();
+    public static User getUserEntity() {
+        return (User)SecurityUtils.getSubject().getPrincipal();
     }
 
     public static Long getUserId() {
-        return getUser().getUserId();
+        return getUserEntity().getUserId();
     }
 
     public static void setSessionAttribute(Object key, Object value) {
@@ -58,9 +58,12 @@ public class ShiroUtils {
     }
 
     public static String getKaptcha(String key) {
-        String kaptcha = getSessionAttribute(key).toString();
+        Object kaptcha = getSessionAttribute(key);
+        if(kaptcha == null){
+            throw new RRException("验证码已失效");
+        }
         getSession().removeAttribute(key);
-        return kaptcha;
+        return kaptcha.toString();
     }
 
 }

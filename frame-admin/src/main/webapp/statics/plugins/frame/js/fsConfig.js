@@ -46,9 +46,9 @@ layui.define([], function (exports) {
 				"limitName": "pageSize" //每页数据量的参数名，默认：pageSize
 			},
 			"response": {//响应配置
-				"countName": "data", //数据总数的字段名称，默认：results.data.total
+				"countName": "data.total", //数据总数的字段名称，默认：results.data.total
 				"dataName" : "data", //数据列表的字段名称，默认：results.data
-				"dataNamePage": "data" //分页数据列表的字段名称，默认：results.data.list
+				"dataNamePage": "data.list" //分页数据列表的字段名称，默认：results.data.list
 			}//,
 //			"limit":10,//每页分页数量。默认20
 //			"limits":[10,20,30,50,100]//每页数据选择项，默认[10,20,30,50,100]

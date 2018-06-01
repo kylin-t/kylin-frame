@@ -1,6 +1,7 @@
 package com.kylin.sys.service;
 
 import com.kylin.sys.entity.User;
+import com.kylin.utils.Filter;
 
 import java.util.List;
 import java.util.Map;
@@ -15,9 +16,9 @@ public interface UserService {
 
     User queryObject(Long id);
 
-    List<User> queryList(Map<String, Object> map);
+    List<User> queryList(Filter filter);
 
-    int queryTotal(Map<String, Object> map);
+    int queryTotal(Filter filter);
 
     void save(User user);
 
@@ -25,7 +26,7 @@ public interface UserService {
 
     void delete(String id);
 
-    void deleteBatch(String[] ids);
+    void deleteBatch(Long[] ids);
 
     User queryByUserame(String username);
 }

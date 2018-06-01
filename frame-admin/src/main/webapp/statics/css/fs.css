@@ -21,6 +21,8 @@ fieldset { min-width: 100px; }
 
 .layui-form-query{padding:10px 15px 0px 15px}
 
+/*.layui-quote-warn{border-left:5px solid #FFB800;border-color:#FFB800}*/
+
 .fsDatagrid{display: none;}
 
 .fsDatagridCols{display: none;}
@@ -70,3 +72,4 @@ fieldset { min-width: 100px; }
 
 .showMenu.layui-layout-admin .layui-side{ left:-200px; }
 .showMenu .layui-body,.showMenu .layui-footer{ left:0; }
+
