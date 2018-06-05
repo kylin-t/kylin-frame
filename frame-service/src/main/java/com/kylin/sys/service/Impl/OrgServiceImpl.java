@@ -3,11 +3,11 @@ package com.kylin.sys.service.Impl;
 import com.kylin.sys.dao.OrgDao;
 import com.kylin.sys.entity.Org;
 import com.kylin.sys.service.OrgService;
-import com.kylin.utils.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:
@@ -22,8 +22,8 @@ public class OrgServiceImpl implements OrgService {
     private OrgDao orgDao;
 
     @Override
-    public List<Org> querylist(Filter filter) {
-        return orgDao.queryList(filter);
+    public List<Org> querylist(Map<String,Object> map) {
+        return orgDao.queryList(map);
     }
 
     @Override

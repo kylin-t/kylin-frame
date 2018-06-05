@@ -6,7 +6,7 @@ import com.kylin.sys.entity.Menu;
 import com.kylin.sys.entity.User;
 import com.kylin.utils.Constant;
 import com.kylin.utils.ShiroUtils;
-import com.kylin.utils.StringUtils;
+import com.kylin.utils.StringUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -59,7 +59,7 @@ public class MyRealm extends AuthorizingRealm {
         //用户权限列表
         Set<String> permsSet = new HashSet<>();
         for(String perms : permsList){
-            if(StringUtils.isEmpty(perms)){
+            if(StringUtil.isEmpty(perms)){
                 continue;
             }
             permsSet.addAll(Arrays.asList(perms.trim().split(",")));

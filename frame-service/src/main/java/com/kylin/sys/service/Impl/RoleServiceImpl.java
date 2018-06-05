@@ -3,7 +3,6 @@ package com.kylin.sys.service.Impl;
 import com.kylin.sys.dao.RoleDao;
 import com.kylin.sys.entity.Role;
 import com.kylin.sys.service.RoleService;
-import com.kylin.utils.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +22,13 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
 
     @Override
-    public List<Role> queryList(Filter filter) {
-        return roleDao.queryList(filter);
+    public List<Role> queryList(Map<String,Object> map) {
+        return roleDao.queryList(map);
     }
 
     @Override
-    public int queryTotal(Filter filter) {
-        return roleDao.queryTotal(filter);
+    public int queryTotal(Map<String,Object> map) {
+        return roleDao.queryTotal(map);
     }
 
     @Override

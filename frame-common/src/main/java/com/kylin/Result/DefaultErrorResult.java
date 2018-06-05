@@ -4,7 +4,7 @@ import com.kylin.enums.ExceptionEnum;
 import com.kylin.enums.ResultCode;
 import com.kylin.exception.BusinessException;
 import com.kylin.utils.RequestContextUtil;
-import com.kylin.utils.StringUtils;
+import com.kylin.utils.StringUtil;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
@@ -86,7 +86,7 @@ public class DefaultErrorResult implements Serializable {
         }
 
         DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e.getResultCode() == null ? ResultCode.SUCCESS : e.getResultCode(), e, HttpStatus.OK, e.getData());
-        if (StringUtils.isNotEmpty(e.getMessage())) {
+        if (StringUtil.isNotEmpty(e.getMessage())) {
             defaultErrorResult.setMessage(e.getMessage());
         }
         return defaultErrorResult;

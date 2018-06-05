@@ -2,7 +2,7 @@ package com.kylin.exception;
 
 import com.kylin.enums.ExceptionEnum;
 import com.kylin.enums.ResultCode;
-import com.kylin.utils.StringUtils;
+import com.kylin.utils.StringUtil;
 
 /**
  * @Author kylin
@@ -36,7 +36,7 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(String format, Object... objects) {
         this();
-        this.message = StringUtils.formatIfArgs(format, "{}", objects);
+        this.message = StringUtil.formatIfArgs(format, "{}", objects);
     }
 
     public BusinessException(ResultCode resultCode, Object data) {

@@ -2,9 +2,9 @@ package com.kylin.sys.service;
 
 
 import com.kylin.sys.entity.Org;
-import com.kylin.utils.Filter;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:  组织机构service
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface OrgService {
 
-    List<Org> querylist(Filter filter);
+    List<Org> querylist(Map<String,Object> map);
 
     void save(Org org);
 }

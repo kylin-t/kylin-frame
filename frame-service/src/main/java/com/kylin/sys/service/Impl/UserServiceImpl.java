@@ -1,7 +1,6 @@
 package com.kylin.sys.service.Impl;
 
 import com.kylin.sys.service.UserRoleService;
-import com.kylin.utils.Filter;
 import com.kylin.utils.ShiroUtils;
 import com.kylin.sys.dao.UserDao;
 import com.kylin.sys.entity.User;
@@ -35,13 +34,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> queryList(Filter filter) {
-        return userDao.queryList(filter);
+    public List<User> queryList(Map<String,Object> map) {
+        return userDao.queryList(map);
     }
 
     @Override
-    public int queryTotal(Filter filter) {
-        return userDao.queryTotal(filter);
+    public int queryTotal(Map<String,Object> map) {
+        return userDao.queryTotal(map);
     }
 
     @Override

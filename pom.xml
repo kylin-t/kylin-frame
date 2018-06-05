@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>frame-admin</module>
+        <module>frame-web</module>
         <module>frame-common</module>
         <module>frame-service</module>
         <module>frame-shiro</module><!--web管理模块 -->
