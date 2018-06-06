@@ -17,4 +17,15 @@ public interface OrgService {
     List<Org> querylist(Map<String,Object> map);
 
     void save(Org org);
+
+    /**
+     * 查询子部门ID列表
+     * @param parentId  上级部门ID
+     */
+    List<Long> getChildOrgIdList(Long parentId);
+
+    /**
+     * 获取子部门ID(包含本部门ID)，用于数据过滤
+     */
+    String getOrgIdList(Long orgId);
 }
