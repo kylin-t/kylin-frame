@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kylin.modules.system.dao.SysMenuDao">
+
+	<select id="queryObject" resultType="com.kylin.modules.system.entity.SysMenu">
+		select * from sys_menu where menu_id = #{value}
+	</select>
+	
+	<insert id="save" parameterType="com.kylin.modules.system.entity.SysMenu">
+		insert into sys_menu
+		(
+
+			parent_id,
+			menu_name,
+			menu_url,
+			permission,
+			menu_type,
+			icon,
+			order_num
+		)
+		values
+		(
+			#{parentId}, 
+			#{menuName},
+			#{menuUrl},
+			#{permission},
+			#{menuType},
+			#{icon}, 
+			#{orderNum}
+		)
+	</insert>
+	
+	<select id="queryListParentId" resultType="com.kylin.modules.system.entity.SysMenu">
+		select * from sys_menu where parent_id = #{parentId} order by order_num asc 
+	</select>
+	
+	<select id="queryNotButtonList" resultType="com.kylin.modules.system.entity.SysMenu">
+		select * from sys_menu where menu_type != 2 order by order_num asc
+	</select>
+	
+	<select id="queryList" resultType="com.kylin.modules.system.entity.SysMenu">
+		select
+		<choose>
+			<when test="limit != null">
+				top ${limit} m.*,(select p.menu_name from sys_menu p where p.menu_id = m.parent_id) as parentName
+				from sys_menu m
+			</when>
+			<otherwise>
+				 m.*,(select p.menu_name from sys_menu p where p.menu_id = m.parent_id) as parentName
+				from sys_menu m
+			</otherwise>
+		</choose>
+
+		<if test="offset != null and limit != null">
+			<where>
+				menu_id not in (SELECT top ${offset} menu_id from sys_menu)
+			</where>
+		</if>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by m.${sidx} ${order}
+			</when>
+			<otherwise>
+				order by m.order_num asc
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 查询用户的权限列表 --> 
+	<select id="queryUserList" resultType="com.kylin.modules.system.entity.SysMenu">
+		select distinct m.*,(select p.menu_name from sys_menu p where p.menu_id = m.parent_id) as parentName
+			from sys_user_role ur 
+			LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id 
+			LEFT JOIN sys_menu m on rm.menu_id = m.menu_id 
+		where ur.user_id = #{userId} order by m.order_num asc
+	</select>
+	
+	<select id="queryTotal" resultType="int">
+		select count(*) from sys_menu
+	</select>
+	 
+	<update id="update" parameterType="com.kylin.modules.system.entity.SysMenu">
+		update sys_menu 
+		<set> 
+			<if test="parentId != null">parent_id = #{parentId}, </if>
+			<if test="menuName != null">menu_name = #{menuName}, </if>
+			<if test="menuUrl != null">menu_url = #{menuUrl}, </if>
+			<if test="permission != null">permission = #{permission}, </if>
+			<if test="menuType != null">menu_type = #{menuType}, </if>
+			<if test="icon != null">icon = #{icon}, </if>
+			<if test="orderNum != null">order_num = #{orderNum}</if>
+		</set>
+		where menu_id = #{menuId}
+	</update>
+	
+	<delete id="deleteBatch">
+		delete from sys_role_menu where menu_id in
+		<foreach item="menuId" collection="array" open="(" separator="," close=")">
+			#{menuId}
+		</foreach>
+		;
+		delete from sys_menu where menu_id in 
+		<foreach item="menuId" collection="array" open="(" separator="," close=")">
+			#{menuId}
+		</foreach>
+
+
+	</delete>
+
+	<select id="queryListById" resultType="com.kylin.modules.system.entity.SysMenu">
+		select * from sys_menu
+		<if test="list!=null">
+			where menu_id in
+			<foreach item="menuId" collection="list" open="(" separator="," close=")">
+				#{menuId}
+			</foreach>
+		</if>
+		order by order_num asc
+	</select>
+	<select id="queryBtn" resultType="com.kylin.modules.system.entity.SysMenu">
+		select * from sys_menu where menu_type = 2 and parent_id = #{menuId} order by order_num asc ;
+	</select>	
+</mapper>

@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.kunbo</groupId>
-	<artifactId>basic-framework</artifactId>
+	<groupId>com.kylin</groupId>
+	<artifactId>kylin-frame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>basic-framework</name>
+	<name>kylin-frame</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -54,9 +54,9 @@
 			<scope>true</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.46</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -138,67 +138,11 @@
 			<artifactId>quartz</artifactId>
 			<version>2.2.3</version>
 		</dependency>
-		<!-- activiti-->
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring-boot-starter-basic</artifactId>
-			<version>5.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-modeler</artifactId>
-			<version>5.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-diagram-rest</artifactId>
-			<version>5.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>5.22.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring</artifactId>
-			<version>5.22.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-bpmn-model</artifactId>
-			<version>5.22.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-
-		<!--SMS-->
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-core</artifactId>
-			<version>3.7.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.github.binarywang</groupId>
-			<artifactId>weixin-java-pay</artifactId>
-			<version>3.0.0</version>
-		</dependency>
 
 	</dependencies>
 
 	<build>
-        <finalName>basic-framework</finalName>
+        <finalName>kylin-frame</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

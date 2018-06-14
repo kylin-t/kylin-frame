@@ -1,0 +1,510 @@
+@CHARSET "UTF-8";
+
+@import "iconfont.css";
+
+.childrenBody {
+    padding: 10px;
+}
+
+iframe {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+.mgb25 {
+    margin-bottom: 20px !important;
+}
+
+.magt3 {
+    margin-top: 3px !important;
+}
+
+.magt20 {
+    margin-top: 20px !important;
+}
+
+.magt40 {
+    margin-top: 40px !important;
+}
+
+.mg-0 {
+    margin: 0 !important;
+}
+
+.layui-nav-tree .layui-nav-child a {
+    padding: 0 35px;
+}
+
+.layui-nav-tree .layui-nav-item {
+    border-bottom: 1px solid #333;
+}
+
+.layui-nav-item {
+    cursor: pointer;
+}
+
+.layui-nav-top {
+    padding-top: 20px;
+    height: 120px;
+    background-color: #393D45;
+    border-bottom: 1px solid #333;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.layui-nav-top img {
+    width: 60px;
+    height: 60px;
+}
+
+.layui-nav-top p {
+    line-height: 45px;
+    height: 45px;
+    font-size: 14px !important;
+}
+
+.layui-body {
+    overflow: hidden;
+    border-top: 6px solid #009688;
+    border-left: 3px solid #009688;
+    background: #fff;
+}
+
+.layui-icon {
+    margin-right: 3px !important;
+    font-size: 16px;
+}
+
+#top_tabs_box {
+    height: 40px;
+    border-bottom: 1px solid #e2e2e2;
+}
+/*顶部右侧*/
+.topLevelMenus li.layui-nav-item:hover {
+    background-color: rgba(221, 221, 221, 0.2);
+}
+
+.layui-header {
+    height: 55px;
+}
+
+.layui-layout-admin .layui-body, .layui-layout-admin .layui-side {
+    top: 55px;
+}
+
+.topLevelMenus {
+    position: absolute;
+    left: 190px;
+}
+
+.topLevelMenus .layui-nav-item.layui-this {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.top_menu.layui-nav .layui-this:after {
+    width: 0px;
+}
+
+.top_menu .layui-nav-bar, .mobileTopLevelMenus .layui-nav-bar {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#top_tabs {
+    position: absolute;
+    border-bottom: none;
+}
+
+#top_tabs ul {
+    border: 0 !important;
+}
+
+.clildFrame.layui-tab-content {
+    top: 41px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.layui-tab-title .layui-this {
+    background-color: #009688;
+    color: #fff;
+}
+
+.layui-tab-title .layui-this:after {
+    border: 0 !important;
+}
+
+.layui-header .layui-nav {
+    padding: 0 10px !important;
+}
+
+.layui-tab-title li cite {
+    font-style: normal;
+    padding-left: 5px;
+}
+
+.layui-nav cite {
+    font-style: normal;
+    padding-left: 5px;
+}
+
+/*404页面*/
+.fly-none {
+    text-align: center;
+    padding-top: 100px;
+    color: #999;
+}
+
+.fly-none i {
+    line-height: 300px;
+    font-size: 300px;
+    color: #393D49;
+}
+
+.fly-none .icon-tishilian {
+    display: inline-block;
+    margin: 30px 0 20px;
+}
+
+.fly-none p {
+    margin-top: 50px;
+    padding: 0 15px;
+    font-size: 20px;
+    color: #999;
+    font-weight: 300;
+}
+
+.fly-list-one .fly-none {
+    min-height: 70px;
+}
+
+/*左侧菜单收起*/
+.toggle-collapse {
+    background: url(../images/toggleCollapse.png) no-repeat 0 0;
+    width: 9px;
+    height: 50px;
+    display: inline-block;
+    position: fixed;
+    left: 200px;
+    top: 50%;
+    margin-top: -17px;
+    cursor: pointer;
+    z-index: 99999;
+}
+
+.toggle-collapse.toggle-show {
+    background-position: right 0;
+}
+
+.showMenu.layui-side {
+    left: -200px;
+}
+
+.showMenu.layui-body, .showMenu.layui-footer {
+    left: 0;
+}
+
+select[multiple]+.layui-form-select>.layui-select-title>input.layui-input
+{
+    border-bottom: 0
+}
+
+select[multiple]+.layui-form-select dd {
+    padding: 0;
+}
+
+select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary]
+{
+    margin: 0 !important;
+    display: block;
+    line-height: 36px !important;
+    position: relative;
+    padding-left: 26px;
+}
+
+select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] span
+{
+    line-height: 36px !important;
+    float: none;
+}
+
+select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i
+{
+    position: absolute;
+    left: 10px;
+    top: 0;
+    margin-top: 9px;
+}
+
+.multiSelect {
+    line-height: normal;
+    height: auto;
+    padding: 4px 10px;
+    overflow: hidden;
+    min-height: 38px;
+    margin-top: -38px;
+    left: 0;
+    z-index: 99;
+    position: relative;
+    background: none;
+}
+
+.multiSelect a {
+    padding: 2px 5px;
+    background: #908e8e;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    line-height: 20px;
+    height: 20px;
+    margin: 2px 5px 2px 0;
+    float: left;
+}
+
+.multiSelect a span {
+    float: left;
+}
+
+.multiSelect a i {
+    float: left;
+    display: block;
+    margin: 2px 0 0 2px;
+    border-radius: 2px;
+    width: 8px;
+    height: 8px;
+    background: url(../images/close.png) no-repeat center;
+    background-size: 65%;
+    padding: 4px;
+}
+
+.multiSelect a i:hover {
+    background-color: #545556;
+}
+/* 缩略图 */
+.article-box {
+    height: 195px;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    line-height: 195px
+}
+
+.article-box:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 195px;
+    z-index: -1;
+    text-align: center;
+    font-size: 20px;
+    content: "添加缩略图";
+    left: 0;
+    top: 0;
+    color: #9F9F9F;
+}
+
+.article-box img {
+    max-width: 100%;
+    max-height: 100%;
+    border: none;
+}
+
+.layui-layedit {
+    min-height: 380px;
+    overflow: hidden;
+    border: 1px solid rgb(230, 230, 230) !important;
+}
+
+.layui-layedit-tool {
+    border: 0;
+    border-bottom: 1px solid rgb(230, 230, 230) !important;
+}
+
+.layui-tree li {
+    line-height: 35px;
+}
+
+/* 菜单操作 */
+#menu-icon-select {
+    border: 1px solid #e6e6e6;
+    padding: 9.5px;
+    cursor: pointer;
+    float: left;
+    margin-right: 4px;
+}
+
+.menu-title {
+    float: left;
+    width: 90% !important;
+}
+
+#icon-select {
+
+}
+
+.icon-query-div {
+    background: #F3F7F9;
+    padding: 10px;
+}
+
+.icon-query-div input {
+    width: 90%;
+    margin: 0px auto;
+    height: 35px;
+}
+
+.icon-list {
+    padding: 10px 20px;
+}
+
+.icon-list i {
+    border: 1px solid #e6e6e6;
+    cursor: pointer;
+    padding: 7px;
+    display: inline-table;
+    margin-bottom: 10px;
+    font-size: 18px !important;
+    margin-left: 5px;
+}
+
+.tree-none {
+    margin-left: 16px;
+}
+
+/* 权限列表 */
+#powerList div {
+    min-height: 50px;
+}
+
+/* 头像 */
+.admin-box {
+    height: 90px;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    line-height: 90px
+}
+
+.admin-box:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 90px;
+    z-index: -1;
+    text-align: center;
+    font-size: 14px;
+    content: "上传头像";
+    left: 0;
+    top: 0;
+    color: #9F9F9F;
+}
+
+.admin-box img {
+    max-width: 100%;
+    max-height: 100%;
+    border: none;
+}
+
+/* 权限组 */
+.power-list {
+
+}
+
+.power-lists {
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.power-list li .layui-form-checkbox {
+    vertical-align: baseline;
+}
+
+.power-second {
+
+}
+
+.power-list li {
+    margin-left: 30px;
+    padding: 0 0 8px 8px;
+}
+
+.power-list li label {
+    margin-left: 10px;
+    vertical-align: -5px
+}
+
+.power-list li label i {
+    margin-right: 15px;
+}
+
+.power-list>li:nth-child(1) {
+    background: #eee;
+    margin-left: 0;
+    border-radius: 2px;
+}
+
+.power-lists>li:nth-child(1) {
+    line-height: 30px;
+    border: 2px solid #eee;
+    border-width: 0 0 1px 0px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.power-list-btn>li {
+    background: #fff;
+    margin-left: 30px;
+    border-radius: 0px;
+}
+
+.layui-table-edit {
+    width: 40%;
+    margin-left: 30% !important;
+    padding: 0;
+    outline: none;
+    height: 38px;
+    line-height: 38px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: #e6e6e6;
+    text-align: center;
+    color: #666;
+    background: #f8f8f8;
+    padding: 0;
+    width: 40%;
+}
+
+.power-span{
+    border-bottom: 1px solid #666;
+    padding:0 3px;
+}
+
+.qntest-box{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.qntest-box img{
+    width: 100%;
+    max-height: 100%;
+}
+
+.describe p{
+    line-height: 30px;
+    padding-left: 25px;
+}

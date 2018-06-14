@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="https://cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../../css/fs.css" media="all"/>
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/fsDict.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/fs.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/frame.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../scripts/basic.js"></script>
+</head>
+<body>
+<div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space1">
+            <div class="layui-col-md12">
+                <div class="layui-form-queryTest">
+                    <form class="layui-form" id="query_form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-mid">名称：</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                    <input type="text" name="queryName" autocomplete="off" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <button class="layui-btn" type="button" function="query"><i class="layui-icon">&#xe615;</i>查询
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-row grid-demo">
+                    <div class="layui-col-md12">
+                        <button class="layui-btn" function="top" topUrl="sys/role/add.html" topWidth="600px"
+                                isMaximize="0" topHeight="460px" topTitle="新增角色">
+                            <i class="layui-icon">&#xe654;</i>新增
+                        </button>
+                        <button class="layui-btn layui-btn-danger" function="submit" method="get" url="sys/role/delete"
+                                isMutiDml="1" isConfirm="1" confirmMsg="是否确定删除选中的数据？" inputs="roleId:">
+                            <i class="layui-icon">&#xe640;</i>批量删除
+                        </button>
+                        <button class="layui-btn" function="refresh">
+                            <i class="layui-icon">&#x1002;</i>刷新
+                        </button>
+                        <button class="layui-btn" function="test">
+                            <i class="layui-icon">&#xe756;</i>测试
+                        </button>
+                    </div>
+                    <div class="layui-col-md12">
+                        <table id="fsDatagrid" lay-filter="fsDatagrid" class="fsDatagrid" isLoad="1" url="sys/role/list"
+                               isPage="1" sortType="1" pageSize="10" defaultForm="query_form" height="full-135"></table>
+
+                        <div class="fsDatagridCols">
+                            <p type="numbers" title="#"/>
+                            <p checkbox="true"/>
+                            <p field="roleId" title="roleId" width="100" sort="true"/>
+                            <p field="roleName" title="角色名称" width="200" sort="true"/>
+                            <p field="roleNum" title="角色编码" width="150"/>
+                            <p field="levelNum" title="角色级别" width="150" dict="roleType"/>
+                            <p field="createTime" title="创建时间" width="200"/>
+                            <p field="remark" title="备注" width="200"/>
+                            <p fixed="right" align="center" toolbar="#barDemo" title="操作" width="320"/>
+                        </div>
+
+                        <script type="text/html" id="stateTpl">
+                            <input type="checkbox" name="status" lay-skin="switch" disabled lay-text="正常|禁用" {{
+                                   d.status==
+                                   1 ? 'checked' : '' }}>
+                        </script>
+                        <script type="text/html" id="barDemo">
+                            <a class="layui-btn  layui-btn-sm" lay-event="top"
+                               topUrl="sys/role/menuAuth.html" topWidth="400px" topHeight="460px"
+                               topTitle="编辑权限" inputs="roleId:"><i class="layui-icon">&#xe672;</i>权限</a>
+                            <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="top"
+                               topUrl="sys/role/edit.html"
+                               topWidth="600px" topHeight="460px" topTitle="编辑角色" inputs="roleId:"><i class="layui-icon">&#xe642;</i>编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="submit" url="sys/role/delete"
+                               isConfirm="1" method="get" confirmMsg="是否确定删除当前记录？" inputs="roleId:"><i
+                                    class="layui-icon">&#xe640;</i>删除</a>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

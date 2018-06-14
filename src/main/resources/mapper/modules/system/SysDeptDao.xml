@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kylin.modules.system.dao.SysDeptDao">
+
+	<select id="queryObject" resultType="com.kylin.modules.system.entity.SysDept">
+		select * from sys_dept where dept_id = #{deptId} and del_flag = 0
+	</select>
+
+	<select id="queryObjectByDeptNum" resultType="com.kylin.modules.system.entity.SysDept">
+		select top 1 * from sys_dept where dept_num = #{deptNum}
+	</select>
+	
+	<select id="queryList" resultType="com.kylin.modules.system.entity.SysDept">
+		select d.*,
+		(select p.name from sys_dept p where p.dept_id = d.parent_id) as parentName,
+		(select dd.data_value from sys_dict_data dd where dd.data_key = d.dept_type) as deptTypeName
+		from sys_dept d where d.del_flag = 0
+		<!-- 数据过滤-->
+			${filterSql}
+		<!--<if test="deptIds!=null and deptIds!=''">-->
+			<!--AND dept_id IN (${deptIds})-->
+		<!--</if>-->
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by d.${sidx} ${order}
+            </when>
+			<otherwise>
+                order by d.parent_id asc
+			</otherwise>
+        </choose>
+	</select>
+	
+	<select id="queryDetpIdList" resultType="long">
+		select dept_id from sys_dept where parent_id = #{value} and del_flag = 0
+	</select>
+
+	<insert id="save" parameterType="com.kylin.modules.system.entity.SysDept" useGeneratedKeys="true" keyProperty="deptId">
+		insert into sys_dept
+		(
+		parent_id,
+		name,
+		dept_num,
+		dept_type,
+		query_code,
+		order_num
+		)
+		values
+		(
+		#{parentId},
+		#{name},
+		#{deptNum},
+		#{deptType},
+		#{queryCode},
+		#{orderNum}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.kylin.modules.system.entity.SysDept">
+		update sys_dept
+		<set>
+			<if test="parentId != null">parent_id = #{parentId}, </if>
+			<if test="name != null">name = #{name}, </if>
+			<if test="deptType != null">dept_type = #{deptType}, </if>
+			<if test="orderNum != null">order_num = #{orderNum},</if>
+			<if test="queryCode != null">query_code = #{queryCode},</if>
+			<if test="deptNum != null">dept_num = #{deptNum}</if>
+		</set>
+		where dept_id = #{deptId}
+	</update>
+
+	<update id="delete">
+		update sys_dept set del_flag = -1 where dept_id = #{value}
+	</update>
+	<!--<select id="getChildDepts" resultType="com.kylin.modules.system.entity.SysDept">-->
+		<!--WITH DEPT_CHILDREN(DEPT_ID,DEPT_NUM,NAME,DEPT_TYPE,PARENT_ID,QUERY_CODE) AS (-->
+		<!--SELECT DEPT_ID,DEPT_NUM,NAME,DEPT_TYPE,PARENT_ID,QUERY_CODE-->
+		<!--FROM SYS_DEPT d-->
+		<!--WHERE 1=1-->
+		<!--<choose>-->
+			<!--<when test="deptId != null"> AND DEPT_ID=#{deptId}</when>-->
+			<!--<otherwise> AND PARENT_ID=0</otherwise>-->
+		<!--</choose>-->
+		<!--UNION ALL-->
+		<!--SELECT A.DEPT_ID,A.DEPT_NUM,A.NAME ,A.DEPT_TYPE,A.PARENT_ID,A.QUERY_CODE-->
+		<!--FROM SYS_DEPT A INNER JOIN DEPT_CHILDREN B ON B.DEPT_ID = A.PARENT_ID-->
+		<!--WHERE DEL_FLAG=0-->
+		<!--)-->
+		<!--SELECT DEPT_ID,DEPT_NUM,NAME,QUERY_CODE,-->
+		<!--DEPT_TYPE,PARENT_ID,-->
+		<!--(select c.value_name from sys_code_value c-->
+		<!--where c.value_num=a.DEPT_TYPE ) as DEPT_TYPE_NAME,-->
+
+		<!--(select t.name from SYS_DEPT T where t.dept_id=A.PARENT_ID) AS PARENT_NAME-->
+		<!--FROM DEPT_CHILDREN A;-->
+	<!--</select>-->
+
+	<select id="getChildDeptIds" resultType="Long">
+		WITH DEPT_CHILDREN(DEPT_ID,PARENT_ID) AS (
+			SELECT DEPT_ID,PARENT_ID FROM SYS_DEPT d WHERE DEPT_ID=#{deptId}
+			UNION ALL
+			SELECT A.DEPT_ID ,A.PARENT_ID
+			FROM SYS_DEPT A INNER JOIN DEPT_CHILDREN B ON B.DEPT_ID = A.PARENT_ID
+			WHERE DEL_FLAG=0
+		)
+		SELECT DEPT_ID FROM DEPT_CHILDREN A;
+	</select>
+</mapper>

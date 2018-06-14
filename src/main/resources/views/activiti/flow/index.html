@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="https://cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../../css/fs.css" media="all"/>
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/fsDict.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/fs.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/frame.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../scripts/basic.js"></script>
+</head>
+<body>
+<div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space1">
+            <div class="layui-col-md12">
+                <div class="layui-form-queryTest">
+                    <form class="layui-form" id="query_form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-mid">id：</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                    <input type="tel" name="id" autocomplete="off" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-mid">名称：</label>
+                                <div class="layui-input-inline" style="width: 100px;">
+                                    <input type="text" name="name" autocomplete="off" class="layui-input"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-mid">时间：</label>
+                                <div class="layui-input-inline" style="">
+                                    <input type="text" name="createDate" autocomplete="off" class="layui-input fsDate"
+                                           dateRange="1" placeholder=" - "/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <button class="layui-btn" type="button" function="queryTest"><i class="layui-icon">&#xe615;</i>查询
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-row grid-demo">
+                    <div class="layui-col-md12">
+                        <table id="fsDatagrid" lay-filter="fsDatagrid" class="fsDatagrid" isLoad="1" url="act/proc/list"
+                               isPage="1" sortType="1" pageSize="10" defaultForm="query_form" height="full-135"></table>
+
+                        <div class="fsDatagridCols">
+                            <p type="numbers" title="#"/>
+                            <p checkbox="true"/>
+                            <p field="id" title="ID" width="100" sort="true"/>
+                            <p field="processId" title="流程的key" width="150" sort="true"/>
+                            <p field="resource" title="部署资源包" width="150"/>
+                            <p field="processName" title="流程名称" width="100"/>
+                            <p field="deployName" title="部署人姓名" width="100"/>
+                            <p field="deployId" title="部署ID" width="100"/>
+                            <p field="deployTime" title="部署时间" width="180"/>
+                            <p field="definitionId" title="流程定义ID" width="180"/>
+                            <p fixed="right" align="center" toolbar="#barDemo" title="操作" width="200"/>
+                        </div>
+
+                        <script type="text/html" id="barDemo">
+                            {{#  if(d.deployId == null){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="top"
+                               topUrl="activiti/flow/setParams.html" topMode="readonly" topWidth="900px" topHeight="420px"
+                               topTitle="查看demo" inputs="processId:">设置参数</a>
+                            <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="submit" url="act/proc/deploye"
+                               isConfirm="1" method="get" confirmMsg="是否确定部署此流程？"
+                               inputs="processId:,resource:,processName:">部署流程</a>
+                            {{# } else if(d.deployId != null){ }}
+                            <a class="layui-btn layui-btn-xs" lay-event="top"
+                               topUrl="activiti/flow/setParams.html" topMode="readonly" topWidth="900px" topHeight="420px"
+                               topTitle="查看demo" inputs="processId:">设置参数</a>
+                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="viewImg">查看流程</a>
+                            {{#  } }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    layui.fsButton.viewImg = function (elem, data, datagrid) {
+        var url = baseURL + "act/proc/flow.jpg?deployId=" + data.deployId;
+        var img = "<img src='" + url + "' />";
+
+        layer.open({
+            id: 'leave-image',
+            type: 1,
+            area: [ '950px', '450px'],
+            fix: false,
+            maxmin: true,
+            shadeClose: true,
+            shade: 0.4,
+            title: '流程图',
+            content: img
+        });
+
+    }
+</script>
+</body>
+</html>

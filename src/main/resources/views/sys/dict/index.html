@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:fs="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="https://cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../../css/fs.css" media="all"/>
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
+    <link href="../../plugins/contextMenu/jquery.contextMenu.min.css" rel="stylesheet">
+    <script src="../../plugins/contextMenu/jquery.contextMenu.min.js"></script>
+    <link rel="stylesheet" href="../../plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+    <script type="text/javascript" src="../../plugins/ztree/js/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/fs.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../plugins/frame/js/frame.js?v=1.7.0"></script>
+    <script type="text/javascript" src="../../scripts/basic.js"></script>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md2">
+            <fieldset class="layui-elem-field">
+                <legend>字典目录管理</legend>
+                <div class="layui-field-box">
+                    <div class="layui-row layui-col-space10">
+                        <blockquote class="layui-elem-quote layui-quote-nm layui-quote-warn"
+                                    style="border-left:5px solid #FFB800;border-color:#FFB800">提示：鼠标点击右键即可进行字典目录管理
+                        </blockquote>
+                        <div class="layui-col-md12">
+                            <ul id="treeDemo" class="ztree fsTree" method="post" isRoot="1" url="dict/type/list"
+                                clickCallbackId="fsDatagrid" clickCallbackInputs="typeKey:$typeKey" treeIdKey="typeKey"
+                                treePIdKey="parentId" treeName="typeValue"></ul>
+
+                            <div class="fsTreeRightMenu">
+                                <p function="refresh" icon="refresh" name="刷新"></p>
+                                <p function="top" icon="add" name="新增" fs:authorize=""
+                                   topUrl="sys/dict/addType.html" topWidth="700px" topHeight="460px"
+                                   topTitle="新增字典目录信息"></p>
+                                <p function="top" icon="edit" name="编辑" fs:authorize=""
+                                   topUrl="sys/dict/editType.html" topWidth="700px" topHeight="460px"
+                                   topTitle="编辑字典目录信息" inputs="id:$id" disabledType="rootNode"></p>
+                                <p function="submit" icon="del" name="删除" fs:authorize="" method="get"
+                                   url="dict/type/delete" isConfirm="1" confirmMsg="是否确定删除？" inputs="id:$id"
+                                   disabledType="parent|rootNode"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="layui-col-md10">
+            <fieldset id="menu_func_div" class="layui-elem-field">
+                <legend>数据字典管理</legend>
+                <div class="layui-field-box">
+                    <div class="layui-col-md12 layui-col-space1">
+                        <div id="table_buttion_div">
+                            <form id="query_form" style="display: none;">
+                                <input type="text" id="typeKey" name="typeKey" value=""/>
+                            </form>
+                            <button class="layui-btn layui-btn-sm" function="top"
+                                    topUrl="sys/dict/addData.html" selectTreeId="typeKey" topWidth="700px"
+                                    topHeight="350px" topTitle="新增字典数据" inputs="typeKey:#typeKey">
+                                <i class="layui-icon">&#xe654;</i>新增
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-danger" function="submit" method="get"
+                                    url="/dict/data/delete"
+                                    isMutiDml="1" isConfirm="1" confirmMsg="是否确定删除选中的数据？" inputs="id:">
+                                <i class="layui-icon">&#xe640;</i>批量删除
+                            </button>
+                            <button class="layui-btn layui-btn-sm" function="refresh" selectTreeId="catalogNum">
+                                <i class="layui-icon">&#x1002;</i>刷新
+                            </button>
+                        </div>
+                    </div>
+                    <div class="layui-col-md12 layui-col-space1">
+                        <table id="fsDatagrid" class="fsDatagrid" lay-filter="fsDatagrid" url="dict/data/list" isLoad="1"
+                               isPage="1" defaultForm="query_form" height="full-130">
+                        </table>
+
+                        <div class="fsDatagridCols">
+                            <p type="numbers" title="#"/>
+                            <p checkbox="true"/>
+                            <!--<p field="id" title="id" width="300"/>-->
+                            <p field="typeKey" title="字典分类编号" width="150"/>
+                            <p field="typeValue" title="字典分类名称" width="150"/>
+                            <p field="dataKey" title="存储值key" width="150"/>
+                            <p field="dataValue" title="显示值value" width="150"/>
+                            <p field="createTime" title="创建时间" width="200"/>
+                            <p field="updateTime" title="更新时间" width="200"/>
+                            <!--<p field="userId" title="创建者id" width="100"/>-->
+                            <p field="userName" title="创建者" width="150"/>
+                            <p fixed="right" align="center" toolbar="#barDemo" title="操作" width="200"/>
+                        </div>
+
+                        <script type="text/html" id="barDemo">
+                            <a id="edit" class="layui-btn layui-btn-xs" lay-event="top"
+                               topUrl="sys/dict/editData.html" topWidth="700px" topHeight="350px" isSelect="1"
+                               topTitle="编辑字典数据" inputs="id:">编辑</a>
+                            <a id="del" class="layui-btn layui-btn-danger layui-btn-xs" lay-event="submit" isConfirm="1"
+                               url="dict/data/delete" inputs="id:">删除</a>
+                        </script>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+</body>
+</html>
