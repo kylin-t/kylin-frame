@@ -1,7 +1,7 @@
 package com.kylin.config;
 
-import com.kylin.modules.system.oauth2.OAuth2Filter;
-import com.kylin.modules.system.oauth2.OAuth2Realm;
+import com.kylin.core.oauth2.OAuth2Filter;
+import com.kylin.modules.shiro.realm.OAuth2Realm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
