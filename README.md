@@ -31,12 +31,5 @@ kylin-frame快速开发平台是一款小而美的快速开发平台。平台内
 - 账号密码：admin/admin
 
 ## 效果图
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212319_6de26405_718698.jpeg "登录.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212334_a2f6eff7_718698.jpeg "系统首页.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212407_312db283_718698.jpeg "用户管理.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212416_b9296c7b_718698.jpeg "部门管理.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212423_eb914cfe_718698.jpeg "菜单管理.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212432_e3e5cc82_718698.jpeg "定时任务.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1106/212443_45d06e1f_718698.jpeg "系统日志.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1103/092032_4d28ccb5_718698.jpeg "swagger.jpg")
-
+![输入图片说明](kylin-admin/src/main/resources/static/images/index.png)
+!
