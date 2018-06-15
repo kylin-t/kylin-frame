@@ -4,38 +4,26 @@
 <mapper namespace="com.kylin.modules.system.dao.SysUserDao">
 	<select id="queryObject" resultType="com.kylin.modules.system.entity.SysUser">
 		select u.*,
-			(SELECT d.name FROM sys_dept d WHERE d.dept_id = u.dept_id) as deptName
+			(SELECT d.dept_name FROM sys_dept d WHERE d.dept_id = u.dept_id) as deptName
 		from sys_user u where user_id = #{value}
 	</select>
 
 	<select id="queryList" resultType="com.kylin.modules.system.entity.SysUser">
-		select
-		<choose>
-			<when test="pageSize != null and pageNum != null">
-				top ${pageSize} A.*,
-			</when>
-			<otherwise>
-				A.*,
-			</otherwise>
-		</choose>
-		(select d.name from sys_dept d where d.dept_id = A.dept_id) as deptName
-		from  (
-			SELECT ROW_NUMBER() OVER (ORDER BY user_id) AS RowNumber,* FROM dbo.sys_user u
-			<where>
-				${filterSql}
-				<if test="childDeptIds != null and childDeptIds!=''">
-					AND u.dept_id IN (${childDeptIds})
-				</if>
-				<if test="queryName != null and queryName.trim() != ''">
-					AND u.cname like '%'+#{queryName}+'%'
-				</if>
-			</where>
-		)as A
+		select u.*,
+		(select d.dept_name from sys_dept d where d.dept_id = u.dept_id) as deptName
+		FROM sys_user u
 		<where>
-			<if test="pageSize != null and pageNum != null">
-				RowNumber > ${pageSize}*${pageNum}
+			${filterSql}
+			<if test="childDeptIds != null and childDeptIds!=''">
+				AND u.dept_id IN (${childDeptIds})
+			</if>
+			<if test="queryName != null and queryName.trim() != ''">
+				AND u.cname like '%'+#{queryName}+'%'
 			</if>
 		</where>
+		<if test="pageSize != null and pageNum != null">
+			limit ${pageNum},${pageSize}
+		</if>
 	</select>
 
 	<select id="queryTotal" resultType="int">

@@ -14,11 +14,10 @@
     </select>
     <!-- 查询所有字典数据 -->
     <select id="queryList" resultType="com.kylin.modules.system.entity.DictData">
-        select temp.*,
-        (SELECT u.username FROM sys_user u WHERE u.user_id = temp.user_id) userName,
-        (SELECT t.type_value FROM sys_dict_type t WHERE t.type_key = temp.type_key) typeValue
-        from (
-        SELECT ROW_NUMBER() OVER (ORDER BY id) AS RowNumber,* FROM dbo.SYS_DICT_DATA
+        select d.*,
+        (SELECT u.username FROM sys_user u WHERE u.user_id = d.user_id) userName,
+        (SELECT t.type_value FROM sys_dict_type t WHERE t.type_key = d.type_key) typeValue
+        FROM SYS_DICT_DATA d
         <where>
             <if test="id != null">
                 id = #{id}
@@ -27,10 +26,9 @@
                 and type_key = #{typeKey}
             </if>
         </where>
-        ) AS temp
-            <if test="pageSize != null and pageSize.trim()!='' and pageNum != null and pageNum.trim()!= ''">
-                limit ${pageNum} ${pageSize}
-            </if>
+        <if test="pageSize != null and pageSize.trim()!='' and pageNum != null and pageNum.trim()!= ''">
+            limit ${pageNum},${pageSize}
+        </if>
     </select>
 
     <!--新建数据字典-->

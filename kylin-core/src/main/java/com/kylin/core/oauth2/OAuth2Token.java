@@ -1,4 +1,4 @@
-package com.kylin.modules.system.oauth2;
+package com.kylin.core.oauth2;
 
 
 import org.apache.shiro.authc.AuthenticationToken;

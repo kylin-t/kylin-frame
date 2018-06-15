@@ -8,7 +8,7 @@ import java.util.List;
  * @author: kylin
  * @create: 2018-01-30 11:15
  **/
-public class SysDept implements Serializable{
+public class SysDept implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long deptId;
@@ -19,7 +19,7 @@ public class SysDept implements Serializable{
     /**
      * 部门名称
      */
-    private String name;
+    private String deptName;
     /**
      * 排序
      */
@@ -46,10 +46,6 @@ public class SysDept implements Serializable{
      */
     private String deptTypeName;
     /**
-     * 查询码
-     */
-    private String queryCode;
-    /**
      * ztree属性 是否展开
      */
     private Boolean open;
@@ -74,12 +70,12 @@ public class SysDept implements Serializable{
         this.parentId = parentId;
     }
 
-    public String getName() {
-        return name;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public Integer getOrderNum() {
@@ -128,14 +124,6 @@ public class SysDept implements Serializable{
 
     public void setDeptTypeName(String deptTypeName) {
         this.deptTypeName = deptTypeName;
-    }
-
-    public String getQueryCode() {
-        return queryCode;
-    }
-
-    public void setQueryCode(String queryCode) {
-        this.queryCode = queryCode;
     }
 
     public Boolean getOpen() {

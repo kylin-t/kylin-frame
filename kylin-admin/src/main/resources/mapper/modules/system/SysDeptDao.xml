@@ -12,7 +12,7 @@
 	
 	<select id="queryList" resultType="com.kylin.modules.system.entity.SysDept">
 		select d.*,
-		(select p.name from sys_dept p where p.dept_id = d.parent_id) as parentName,
+		(select p.dept_name from sys_dept p where p.dept_id = d.parent_id) as parentName,
 		(select dd.data_value from sys_dict_data dd where dd.data_key = d.dept_type) as deptTypeName
 		from sys_dept d where d.del_flag = 0
 		<!-- 数据过滤-->
@@ -38,19 +38,17 @@
 		insert into sys_dept
 		(
 		parent_id,
-		name,
+		dept_name,
 		dept_num,
 		dept_type,
-		query_code,
 		order_num
 		)
 		values
 		(
 		#{parentId},
-		#{name},
+		#{deptName},
 		#{deptNum},
 		#{deptType},
-		#{queryCode},
 		#{orderNum}
 		)
 	</insert>
@@ -59,10 +57,9 @@
 		update sys_dept
 		<set>
 			<if test="parentId != null">parent_id = #{parentId}, </if>
-			<if test="name != null">name = #{name}, </if>
+			<if test="dept_name != null">name = #{deptName}, </if>
 			<if test="deptType != null">dept_type = #{deptType}, </if>
 			<if test="orderNum != null">order_num = #{orderNum},</if>
-			<if test="queryCode != null">query_code = #{queryCode},</if>
 			<if test="deptNum != null">dept_num = #{deptNum}</if>
 		</set>
 		where dept_id = #{deptId}

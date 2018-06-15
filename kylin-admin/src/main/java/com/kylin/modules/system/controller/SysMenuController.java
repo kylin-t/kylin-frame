@@ -6,7 +6,7 @@ import com.kylin.common.base.controller.BaseController;
 import com.kylin.core.exception.RRException;
 import com.kylin.core.utils.Constant;
 import com.kylin.modules.system.entity.SysMenu;
-import com.kylin.modules.system.service.ShiroService;
+import com.kylin.modules.shiro.service.ShiroService;
 import com.kylin.modules.system.service.SysMenuService;
 import com.kylin.modules.system.service.SysRoleMenuService;
 import io.swagger.annotations.Api;

@@ -62,7 +62,7 @@ public class SysDeptController extends BaseController {
         if (getUserId() == Constant.SUPER_ADMIN) {
             SysDept root = new SysDept();
             root.setDeptId(0L);
-            root.setName("一级部门");
+            root.setDeptName("一级部门");
             root.setParentId(-1L);
             root.setOpen(true);
             deptList.add(root);

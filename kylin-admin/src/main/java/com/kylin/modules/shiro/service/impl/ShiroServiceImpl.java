@@ -1,11 +1,11 @@
-package com.kylin.modules.system.service.impl;
+package com.kylin.modules.shiro.service.impl;
 
 import com.kylin.core.utils.Constant;
 import com.kylin.modules.system.dao.SysMenuDao;
 import com.kylin.modules.system.dao.SysUserDao;
 import com.kylin.modules.system.dao.SysUserTokenDao;
 import com.kylin.modules.system.entity.SysMenu;
-import com.kylin.modules.system.service.ShiroService;
+import com.kylin.modules.shiro.service.ShiroService;
 import com.kylin.modules.system.entity.SysUser;
 import com.kylin.modules.system.entity.SysUserToken;
 import org.apache.commons.lang.StringUtils;

@@ -1,7 +1,8 @@
-package com.kylin.modules.system.oauth2;
+package com.kylin.modules.shiro.realm;
 
+import com.kylin.core.oauth2.OAuth2Token;
 import com.kylin.modules.system.entity.SysUser;
-import com.kylin.modules.system.service.ShiroService;
+import com.kylin.modules.shiro.service.ShiroService;
 import com.kylin.modules.system.entity.SysUserToken;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

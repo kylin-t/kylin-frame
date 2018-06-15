@@ -8,18 +8,7 @@
 	</select>
 	
 	<select id="queryList" resultType="com.kylin.modules.system.entity.SysRole">
-		select
-		<choose>
-			<when test="pageSize != null ">
-				top ${pageSize} TEMP.*
-			</when>
-			<otherwise>
-				TEMP.*
-			</otherwise>
-		</choose>
-			from (
-				SELECT ROW_NUMBER() OVER (ORDER BY role_id asc) AS RowNumber,
-				* FROM dbo.sys_role r
+			select * FROM sys_role r
 		<where>
 			<if test="maxLevelNum!=null">
 				r.level_num &gt;= #{maxLevelNum}
@@ -28,9 +17,8 @@
 				and role_name like '%'+#{queryName}+'%'
 			</if>
 		</where>
-		)AS TEMP
 		<if test="pageNum != null and pageSize != null">
-			WHERE RowNumber > ${pageSize}*${pageNum}
+			  limit ${pageNum},${pageSize}
 		</if>
 
 

@@ -4,7 +4,7 @@ import com.kylin.core.Result.Result;
 import com.kylin.modules.system.dao.SysUserTokenDao;
 import com.kylin.modules.system.service.SysUserTokenService;
 import com.kylin.modules.system.entity.SysUserToken;
-import com.kylin.modules.system.oauth2.TokenGenerator;
+import com.kylin.core.oauth2.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

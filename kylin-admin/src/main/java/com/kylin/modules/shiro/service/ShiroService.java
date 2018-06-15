@@ -1,4 +1,4 @@
-package com.kylin.modules.system.service;
+package com.kylin.modules.shiro.service;
 
 import com.kylin.modules.system.entity.SysUser;
 import com.kylin.modules.system.entity.SysUserToken;
