@@ -31,5 +31,9 @@ kylin-frame快速开发平台是一款小而美的快速开发平台。平台内
 - 账号密码：admin/admin
 
 ## 效果图
-![输入图片说明](kylin-admin/src/main/resources/static/images/index.png)
+![输入图片说明](kylin-admin/src/main/resources/static/images/user.png)
+![输入图片说明](kylin-admin/src/main/resources/static/images/userAdd.png)
+![输入图片说明](kylin-admin/src/main/resources/static/images/role.png)
+![输入图片说明](kylin-admin/src/main/resources/static/images/menuScr.png)
+![输入图片说明](kylin-admin/src/main/resources/static/images/job.png)
 !
