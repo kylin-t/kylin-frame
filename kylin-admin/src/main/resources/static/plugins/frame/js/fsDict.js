@@ -92,7 +92,7 @@ layui.fsDict = {
     deptType: {
         formatType: "server",
         loadUrl: "dict/data/select",
-        inputs:"typeKey:ORG-TYPE",
+        inputs:"typeKey:DEPT-TYPE",
         labelField: "dataValue",
         valueField: "dataKey"
     }

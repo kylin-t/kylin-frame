@@ -8,27 +8,15 @@
 	</select>
 
     <select id="queryList" resultType="com.kylin.modules.system.entity.SysLogEntity">
-        select
-        <choose>
-            <when test="pageSize != null">
-                top ${pageSize} TEMP.* FROM (
-                SELECT ROW_NUMBER() OVER (order by create_date desc) AS RowNumber,* FROM dbo.sys_log
-                ) AS TEMP
-            </when>
-            <otherwise>
-                * from sys_log
-            </otherwise>
-        </choose>
-
+        select * from sys_log
         <where>
             <if test="key != null and key.trim() != ''">
                 username like '%'+#{key}+'%' or operation like '%'+#{key}+'%'
             </if>
-            <if test="pageNum != null and pageSize != null">
-                and RowNumber > ${pageNum}*(${pageSize}-1)
-            </if>
         </where>
-
+        <if test="pageNum != null and pageSize != null">
+            limit ${pageNum},${pageSize}
+        </if>
     </select>
 
     <select id="queryTotal" resultType="int">

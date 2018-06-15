@@ -3,7 +3,11 @@
 <mapper namespace="com.kylin.modules.system.dao.SysDeptDao">
 
 	<select id="queryObject" resultType="com.kylin.modules.system.entity.SysDept">
-		select * from sys_dept where dept_id = #{deptId} and del_flag = 0
+		select *,
+		(select p.dept_name from sys_dept p where p.dept_id = d.parent_id) as parentName,
+		(select dd.data_value from sys_dict_data dd where dd.data_key = d.dept_type) as deptTypeName
+		from sys_dept d
+		where d.dept_id = #{deptId} and del_flag = 0
 	</select>
 
 	<select id="queryObjectByDeptNum" resultType="com.kylin.modules.system.entity.SysDept">
@@ -57,7 +61,7 @@
 		update sys_dept
 		<set>
 			<if test="parentId != null">parent_id = #{parentId}, </if>
-			<if test="dept_name != null">name = #{deptName}, </if>
+			<if test="deptName != null">dept_name = #{deptName}, </if>
 			<if test="deptType != null">dept_type = #{deptType}, </if>
 			<if test="orderNum != null">order_num = #{orderNum},</if>
 			<if test="deptNum != null">dept_num = #{deptNum}</if>

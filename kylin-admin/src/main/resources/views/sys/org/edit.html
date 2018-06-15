@@ -33,7 +33,7 @@
                     </div>
                     <label class="layui-form-label">组织名称：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="name" required="" lay-verify="" placeholder="请输入组织名称"
+                        <input type="text" name="deptName" required="" lay-verify="" placeholder="请输入组织名称"
                                autocomplete="off" class="layui-input"/>
                     </div>
                 </div>
@@ -44,13 +44,13 @@
                                 addNull="1">
                         </select>
                     </div>
-                    <label class="layui-form-label">查询码：</label>
+                    <label class="layui-form-label">所属机构：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="queryCode" required="" lay-verify="" placeholder="请输入查询码"
-                               autocomplete="off" class="layui-input"/>
+                        <input type="text" name="parentName" required="" lay-verify=""
+                               autocomplete="off" class="layui-input" disabled=""/>
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item" style="display: none">
                     <label class="layui-form-label">所属机构ID：</label>
                     <div class="layui-input-block">
                         <input type="text" name="parentId" required="" placeholder="" autocomplete="off"

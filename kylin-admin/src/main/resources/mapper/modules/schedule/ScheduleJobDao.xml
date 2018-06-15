@@ -7,25 +7,15 @@
 	</select> 
 
 	<select id="queryList" resultType="com.kylin.modules.scheduler.entity.ScheduleJob" >
-		<choose>
-			<when test="limit != null">
-				SELECT top ${limit} temp.* from(
-					SELECT row_number() over(ORDER BY job_id ASC ) AS rowNumber ,
-					* FROM schedule_job
-				) as temp
-			</when>
-			<otherwise>
-				SELECT * from schedule_job
-			</otherwise>
-		</choose>
+		SELECT * from schedule_job
 		<where>
 			<if test="beanName != null and beanName.trim() != ''">
 				bean_name like like '%'+#{beanName}+'%'
 			</if>
-			<if test="page != null">
-				RowNumber > ${limit}*(${page}-1)
-			</if>
 		</where>
+		<if test="pageNum != null and pageSize!=null">
+			limit ${pageNum},${pageSize}
+		</if>
 	</select>
 	
  	<select id="queryTotal" resultType="int">
