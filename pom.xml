@@ -6,7 +6,11 @@
 	<groupId>com.kylin</groupId>
 	<artifactId>kylin-frame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>kylin-core</module>
+		<module>kylin-admin</module>
+	</modules>
+	<packaging>pom</packaging>
 
 	<name>kylin-frame</name>
 	<description>Demo project for Spring Boot</description>
@@ -93,16 +97,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.6.1</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.github.axet</groupId>
 			<artifactId>kaptcha</artifactId>
@@ -132,11 +127,6 @@
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<version>1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>2.2.3</version>
 		</dependency>
 
 	</dependencies>
